@@ -3,36 +3,39 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>UdaanAI - Right Info, Right Time</title>
+  <title>UdaanAI - Right Info. Right Time.</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <header>
-    <img src="https://i.imgur.com/E9j3Hqf.png" alt="UdaanAI Logo" class="logo" />
+    <img src="https://upload.wikimedia.org/wikipedia/commons/0/0b/Butterfly_icon.svg" alt="UdaanAI Logo" class="logo" />
     <h1>UdaanAI</h1>
-    <p class="tagline">Right Info. Right Time. Your Wings to Success.</p>
+    <p class="tagline">Udaan starts here — Right Info. Right Time.</p>
   </header>
 
   <main>
-    <section class="about">
-      <h2>About UdaanAI</h2>
-      <p>
-        UdaanAI is a youth-focused AI assistant that empowers students by providing timely, accurate information about exams, scholarships, career paths, and life skills. It helps guide young minds toward brighter futures with confidence.
-      </p>
+    <section class="button-grid">
+      <button onclick="openLink('https://www.mygov.in/')">Govt Schemes</button>
+      <button onclick="openLink('https://www.startupindia.gov.in/')">Private Schemes</button>
+      <button onclick="openLink('https://scholarships.gov.in/')">Govt Scholarships</button>
+      <button onclick="openLink('https://buddy4study.com/')">Private Scholarships</button>
+      <button onclick="openLink('https://ssc.nic.in/')">Govt Exams</button>
+      <button onclick="openLink('https://tcsion.com/')">Private Exams</button>
+      <button onclick="openLink('https://internship.aicte-india.org/')">Govt Internships</button>
+      <button onclick="openLink('https://internshala.com/')">Private Internships</button>
+      <button onclick="openLink('https://www.digilocker.gov.in/')">Docs & IDs</button>
+      <button onclick="startChatbot()">Ask UdaanBot 🤖</button>
     </section>
 
-    <section class="chatbot">
-      <h2>Smart Chatbot</h2>
-      <div id="chatbox">
-        <div id="chatlogs"></div>
-        <input type="text" id="userInput" placeholder="Ask me anything..." />
-        <button onclick="sendMessage()">Send</button>
-      </div>
+    <section id="chatbot" class="chatbox hidden">
+      <div id="chatlog"></div>
+      <input type="text" id="userInput" placeholder="Ask me anything..." />
+      <button onclick="sendMessage()">Send</button>
     </section>
   </main>
 
   <footer>
-    <p>Created by Pragathi | Powered by AI</p>
+    <p>Made by Pragathi Jadhav | EEE | JNTUH Jagitial</p>
   </footer>
 
   <script src="script.js"></script>
