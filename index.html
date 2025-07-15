@@ -3,41 +3,45 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>UdaanAI - Right Info. Right Time.</title>
+  <title>UdaanAI – Your Wings to Success</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <header>
-    <img src="https://upload.wikimedia.org/wikipedia/commons/0/0b/Butterfly_icon.svg" alt="UdaanAI Logo" class="logo" />
+    <img src="https://upload.wikimedia.org/wikipedia/commons/4/4f/Butterfly_icon.png" alt="UdaanAI Logo" class="logo" />
     <h1>UdaanAI</h1>
-    <p class="tagline">Udaan starts here — Right Info. Right Time.</p>
+    <p>Udaan starts here – Right Info. Right Time.</p>
   </header>
 
   <main>
     <section class="button-grid">
-      <button onclick="openLink('https://www.mygov.in/')">Govt Schemes</button>
-      <button onclick="openLink('https://www.startupindia.gov.in/')">Private Schemes</button>
-      <button onclick="openLink('https://scholarships.gov.in/')">Govt Scholarships</button>
-      <button onclick="openLink('https://buddy4study.com/')">Private Scholarships</button>
-      <button onclick="openLink('https://ssc.nic.in/')">Govt Exams</button>
-      <button onclick="openLink('https://tcsion.com/')">Private Exams</button>
-      <button onclick="openLink('https://internship.aicte-india.org/')">Govt Internships</button>
-      <button onclick="openLink('https://internshala.com/')">Private Internships</button>
-      <button onclick="openLink('https://www.digilocker.gov.in/')">Docs & IDs</button>
-      <button onclick="startChatbot()">Ask UdaanBot 🤖</button>
+      <button id="govSchemes">Government Schemes</button>
+      <button id="privateSchemes">Private Schemes</button>
+      <button id="govScholarships">Govt. Scholarships</button>
+      <button id="privateScholarships">Private Scholarships</button>
+      <button id="govExams">Govt. Exams</button>
+      <button id="privateExams">Private Exams</button>
+      <button id="govInternships">Govt. Internships</button>
+      <button id="privateInternships">Private Internships</button>
+      <button id="digilocker">DigiLocker</button>
+      <button id="aadhar">Aadhaar Services</button>
+      <button id="nptel">NPTEL Courses</button>
+      <button id="mygov">MyGov Portal</button>
+      <button id="educationNews">Education News</button>
     </section>
 
-    <section id="chatbot" class="chatbox hidden">
-      <div id="chatlog"></div>
-      <input type="text" id="userInput" placeholder="Ask me anything..." />
+    <section class="chat-section">
+      <h2>Ask UdaanAI</h2>
+      <div id="chatlog" class="chatlog"></div>
+      <input type="text" id="userInput" placeholder="Ask about schemes, scholarships, exams..." />
       <button onclick="sendMessage()">Send</button>
     </section>
   </main>
 
   <footer>
-    <p>Made by Pragathi Jadhav | EEE | JNTUH Jagitial</p>
+    <p>Made with ❤️ by Pragathi | B.Tech EEE | JNTUH</p>
   </footer>
 
   <script src="script.js"></script>
 </body>
-  </html>
+</html>
