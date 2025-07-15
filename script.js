@@ -1,24 +1,36 @@
 function sendMessage() {
-  const userInput = document.getElementById("userInput").value;
+  const userInput = document.getElementById("userInput").value.trim();
   const chatlogs = document.getElementById("chatlogs");
 
   if (!userInput) return;
 
-  // Show user message
   const userMsg = document.createElement("div");
   userMsg.textContent = "You: " + userInput;
   chatlogs.appendChild(userMsg);
 
-  // Simple bot reply logic
   const botReply = document.createElement("div");
   let reply = "";
 
-  if (userInput.toLowerCase().includes("exam")) {
-    reply = "You can check exam dates on UdaanAI's exam info page.";
-  } else if (userInput.toLowerCase().includes("scholarship")) {
-    reply = "There are many scholarships for girls and science students. Try Inspire, Vidyasiri, and Pragati.";
+  const input = userInput.toLowerCase();
+
+  if (input.includes("exam") || input.includes("test")) {
+    reply = "You can check the latest exam schedules in the Exams tab of UdaanAI.";
+  } else if (input.includes("scholarship")) {
+    reply = "There are many scholarships like INSPIRE, Vidyasiri, Pragati. UdaanAI helps you find them!";
+  } else if (input.includes("career")) {
+    reply = "Explore careers in science, engineering, law, and design. UdaanAI shows you the path!";
+  } else if (input.includes("engineering")) {
+    reply = "Engineering is a great field for problem-solvers. You can pursue EEE, CSE, Civil, or more!";
+  } else if (input.includes("motivation") || input.includes("inspire") || input.includes("confidence")) {
+    reply = "Believe in yourself! You are smart, strong, and capable of achieving anything. 💪🦋";
+  } else if (input.includes("science")) {
+    reply = "Science opens doors to discovery! Fields like space, biotech, and energy are waiting for you.";
+  } else if (input.includes("goal") || input.includes("dream")) {
+    reply = "Set your goal, make a plan, and never give up. UdaanAI is your guide to success.";
+  } else if (input.includes("voice") || input.includes("rights")) {
+    reply = "Every girl deserves to speak up and shine. Know your rights, use your voice — with UdaanAI!";
   } else {
-    reply = "Thank you for your question! I'm learning more every day to help you better.";
+    reply = "That's a great question! UdaanAI is always learning. Try asking about careers or scholarships.";
   }
 
   botReply.textContent = "UdaanAI: " + reply;
