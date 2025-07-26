@@ -4,44 +4,190 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>UdaanAI – Your Wings to Success</title>
-  <link rel="stylesheet" href="style.css" />
+  <style>
+    /* RESET & BODY */
+    *{margin:0;padding:0;box-sizing:border-box;}
+    body{font-family:Segoe UI,sans-serif;background:#f5f5ff;color:#333;padding:20px;text-align:center;}
+    h1{font-size:2.8rem;color:#6a1b9a;margin-bottom:10px;}
+    p.tagline{color:#8e24aa;font-style:italic;margin-bottom:30px;}
+    /* BUTTON GRID */
+    .button-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:15px;padding:0 10px;}
+    .main-btn{padding:18px;font-size:1.05rem;background:linear-gradient(135deg,#ba68c8,#9575cd);color:white;border:none;border-radius:25px;
+      cursor:pointer;transition:0.3s;position:relative;overflow:hidden;}
+    .main-btn:hover{transform:scale(1.05);box-shadow:0 8px 15px rgba(106,27,154,0.3);}
+    /* sub-section hidden initially */
+    .sub-section{display:none;flex-direction:column;align-items:center;margin:10px auto;}
+    .sub-section button{padding:12px 20px;font-size:0.95rem;margin:5px 0;
+      background:#9575cd;border:none;border-radius:8px;color:white;width:90%;max-width:400px;
+      transition:0.2s;}
+    .sub-section button:hover{background:#7e57c2;}
+    /* CHAT STYLE */
+    .chat-section{margin-top:40px;max-width:700px;display:inline-block;text-align:left;background:#ffffff;border-radius:15px;
+      padding:20px;box-shadow:0 0 15px rgba(106,27,154,0.3);}
+    #chatlog{height:200px;overflow-y:auto;border:1px solid #ddd;padding:10px;border-radius:10px;background:#f3e5f5;}
+    #userInput{width:70%;padding:12px;border:1px solid #ba68c8;border-radius:8px;margin-right:8px;}
+    .chat-section button{padding:12px 18px;background:#7e57c2;color:white;border:none;border-radius:8px;cursor:pointer;}
+    .chat-section button:hover{background:#6a1b9a;}
+  </style>
 </head>
 <body>
+
   <header>
-    <img src="https://upload.wikimedia.org/wikipedia/commons/4/4f/Butterfly_icon.png" alt="UdaanAI Logo" class="logo" />
     <h1>UdaanAI</h1>
-    <p>Udaan starts here – Right Info. Right Time.</p>
+    <p class="tagline">Udaan starts here – Right Info. Right Time.</p>
   </header>
 
-  <main>
-    <section class="button-grid">
-      <button id="govSchemes">Government Schemes</button>
-      <button id="privateSchemes">Private Schemes</button>
-      <button id="govScholarships">Govt. Scholarships</button>
-      <button id="privateScholarships">Private Scholarships</button>
-      <button id="govExams">Govt. Exams</button>
-      <button id="privateExams">Private Exams</button>
-      <button id="govInternships">Govt. Internships</button>
-      <button id="privateInternships">Private Internships</button>
-      <button id="digilocker">DigiLocker</button>
-      <button id="aadhar">Aadhaar Services</button>
-      <button id="nptel">NPTEL Courses</button>
-      <button id="mygov">MyGov Portal</button>
-      <button id="educationNews">Education News</button>
-    </section>
+  <section class="button-grid">
+    <button class="main-btn" onclick="toggleSection('govSchemes')">Government Schemes</button>
+    <button class="main-btn" onclick="toggleSection('govScholarships')">Govt. Scholarships</button>
+    <button class="main-btn" onclick="toggleSection('govExams')">Govt. Exams</button>
+    <button class="main-btn" onclick="toggleSection('privateScholarships')">Private Scholarships</button>
+    <button class="main-btn" onclick="toggleSection('privateExams')">Private Exams</button>
+    <button class="main-btn" onclick="toggleSection('govInternships')">Govt. Internships</button>
+    <button class="main-btn" onclick="toggleSection('privateInternships')">Private Internships</button>
+    <button class="main-btn" onclick="toggleSection('govJobs')">Government Jobs</button>
+    <button class="main-btn" onclick="toggleSection('privateJobs')">Private Jobs</button>
+    <button class="main-btn" onclick="toggleSection('otherServices')">DigiLocker & Aadhaar</button>
+  </section>
 
-    <section class="chat-section">
-      <h2>Ask UdaanAI</h2>
-      <div id="chatlog" class="chatlog"></div>
-      <input type="text" id="userInput" placeholder="Ask about schemes, scholarships, exams..." />
-      <button onclick="sendMessage()">Send</button>
-    </section>
-  </main>
+  <!-- Repeat this block for each category -->
+  <div class="sub-section" id="govSchemes">
+    <button onclick="window.open('https://pmay.gov.in','_blank')">PM Awas Yojana</button>
+    <button onclick="window.open('https://pmkisan.gov.in','_blank')">PM Kisan</button>
+    <button onclick="window.open('https://pmjdy.gov.in','_blank')">Jan Dhan</button>
+    <button onclick="window.open('https://pmuy.gov.in','_blank')">PM Ujjwala Yojana</button>
+    <button onclick="window.open('https://pmjay.gov.in','_blank')">Ayushman Bharat</button>
+    <button onclick="window.open('https://nrega.nic.in','_blank')">Mahatma Gandhi NREGA</button>
+    <button onclick="window.open('https://ladf.gov.in','_blank')">Digital India</button>
+    <button onclick="window.open('https://mudra.gov.in','_blank')">Mudra Yojana</button>
+    <button onclick="window.open('https://standupmitra.in','_blank')">Stand‑Up India</button>
+    <button onclick="window.open('https://pmkvyofficial.org','_blank')">Pradhan Mantri Kaushal Vikas Yojana</button>
+  </div>
 
-  <footer>
-    <p>Made with ❤️ by Pragathi | B.Tech EEE | JNTUH</p>
-  </footer>
+  <div class="sub-section" id="govScholarships">
+    <button onclick="window.open('https://scholarships.gov.in','_blank')">National Scholarship Portal (NSP)</button>
+    <button onclick="window.open('https://pragati-saksham.aicte-india.org','_blank')">AICTE Pragati</button>
+    <button onclick="window.open('https://ugcnet.nta.nic.in','_blank')">UGC NET</button>
+    <button onclick="window.open('https://ifms.cdac.in','_blank')">INSPIRE Scholarship</button>
+    <button onclick="window.open('https://iucte.nta.ac.in','_blank')">Ishan Uday</button>
+    <button onclick="window.open('https://nmmss.nta.ac.in','_blank')">NMMS</button>
+    <button onclick="window.open('https://buddy4study.com','_blank')">SC Pre/Post Matric</button>
+    <button onclick="window.open('https://iitrao.ac.in','_blank')">IIT Merit Scholarships</button>
+    <button onclick="window.open('https://nic.portal.gov.in','_blank')">AICTE Educational Scholarships</button>
+    <button onclick="window.open('https://scholarship.unregister','_blank')">State Govt Scholarships</button>
+  </div>
 
-  <script src="script.js"></script>
+  <div class="sub-section" id="govExams">
+    <button onclick="window.open('https://upsc.gov.in','_blank')">UPSC</button>
+    <button onclick="window.open('https://ssc.nic.in','_blank')">SSC Exams</button>
+    <button onclick="window.open('https://rrbcdg.gov.in','_blank')">RRB Exams</button>
+    <button onclick="window.open('https://ibps.in','_blank')">IBPS / SBI Exams</button>
+    <button onclick="window.open('https://nta.ac.in','_blank')">JEE Main / Advanced</button>
+    <button onclick="window.open('https://neet.nta.nic.in','_blank')">NEET UG / PG</button>
+    <button onclick="window.open('https://gate.iitk.ac.in','_blank')">GATE</button>
+    <button onclick="window.open('https://cds.nic.in','_blank')">CDS / NDA</button>
+    <button onclick="window.open('https://aiimsexams.ac.in','_blank')">AIIMS MBBS</button>
+    <button onclick="window.open('https://clat.ac.in','_blank')">CLAT / AILET</button>
+  </div>
+
+  <div class="sub-section" id="privateScholarships">
+    <button onclick="window.open('https://buddy4study.com','_blank')">Buddy4Study Scholarships</button>
+    <button onclick="window.open('https://hdfcbank.com','_blank')">HDFC Educational Crisis</button>
+    <button onclick="window.open('https://tatascholarships.com','_blank')">JM Tata Endowment</button>
+    <button onclick="window.open('https://mahindrascholarship.in','_blank')">Mahindra Talent</button>
+    <button onclick="window.open('https://iocl.com','_blank')">Indian Oil Scholarship</button>
+    <!-- add 5 more -->
+  </div>
+
+  <div class="sub-section" id="privateExams">
+    <button onclick="window.open('https://myamcat.com','_blank')">AMCAT</button>
+    <button onclick="window.open('https://tcsion.com','_blank')">TCS iON NQT</button>
+    <button onclick="window.open('https://cocubes.com','_blank')">CoCubes</button>
+    <button onclick="window.open('https://elitmus.com','_blank')">eLitmus</button>
+    <button onclick="window.open('https://neatmet.com','_blank')">NEATmet</button>
+    <button onclick="window.open('https://coderbyte.com','_blank')">Coderbyte / HackerRank</button>
+    <!-- add more -->
+  </div>
+
+  <div class="sub-section" id="govInternships">
+    <button onclick="window.open('https://internship.aicte-india.org','_blank')">AICTE Internships</button>
+    <button onclick="window.open('https://www.isro.gov.in/careers','_blank')">ISRO Internships</button>
+    <button onclick="window.open('https://www.drdo.gov.in','_blank')">DRDO Internships</button>
+    <button onclick="window.open('https://www.mygov.in','_blank')">MyGov Internships</button>
+    <button onclick="window.open('https://www.nic.in','_blank')">NIC Internships</button>
+    <!-- more -->
+  </div>
+
+  <div class="sub-section" id="privateInternships">
+    <button onclick="window.open('https://internshala.com','_blank')">Internshala</button>
+    <button onclick="window.open('https://letsintern.com','_blank')">LetsIntern</button>
+    <button onclick="window.open('https://angel.co','_blank')">AngelList</button>
+    <button onclick="window.open('https://hirist.com','_blank')">Hirist</button>
+    <button onclick="window.open('https://jobsforher.com','_blank')">JobsForHer</button>
+    <button onclick="window.open('https://apna.co','_blank')">Apna.co</button>
+  </div>
+
+  <div class="sub-section" id="govJobs">
+    <button onclick="window.open('https://tspsc.gov.in','_blank')">TSPSC</button>
+    <button onclick="window.open('https://ssc.nic.in','_blank')">SSC</button>
+    <button onclick="window.open('https://upsc.gov.in','_blank')">UPSC</button>
+    <button onclick="window.open('https://rrbcdg.gov.in','_blank')">Railway Jobs</button>
+    <button onclick="window.open('https://joinindianarmy.nic.in','_blank')">Defence</button>
+    <button onclick="window.open('https://isro.gov.in','_blank')">ISRO</button>
+    <button onclick="window.open('https://drdo.gov.in','_blank')">DRDO</button>
+    <!-- more -->
+  </div>
+
+  <div class="sub-section" id="privateJobs">
+    <button onclick="window.open('https://naukri.com','_blank')">Naukri</button>
+    <button onclick="window.open('https://linkedin.com/jobs','_blank')">LinkedIn Jobs</button>
+    <button onclick="window.open('https://monsterindia.com','_blank')">Monster India</button>
+    <button onclick="window.open('https://indeed.co.in','_blank')">Indeed India</button>
+    <button onclick="window.open('https://apna.co','_blank')">Apna.co</button>
+    <button onclick="window.open('https://angel.co','_blank')">AngelList</button>
+    <!-- more -->
+  </div>
+
+  <div class="sub-section" id="otherServices">
+    <button onclick="window.open('https://digilocker.gov.in','_blank')">DigiLocker</button>
+    <button onclick="window.open('https://uidai.gov.in','_blank')">Aadhaar Services</button>
+    <button onclick="window.open('https://uidai.gov.in/myaadhaar','_blank')">Aadhaar Update</button>
+    <button onclick="window.open('https://eaadhaar.uidai.gov.in','_blank')">Aadhaar Download / Status</button>
+  </div>
+
+  <!-- CHATBOT -->
+  <div class="chat-section">
+    <h2>Ask UdaanAI</h2>
+    <div id="chatlog"></div>
+    <input type="text" id="userInput" placeholder="E.g. I am in 9th class" />
+    <button onclick="sendMessage()">Send</button>
+  </div>
+
+<script>
+  function toggleSection(id){
+    document.querySelectorAll('.sub-section').forEach(s=>s.id===id?s.style.display=s.style.display==='flex'?'none':'flex':'none');
+  }
+
+  function sendMessage(){
+    const inp=document.getElementById('userInput'), log=document.getElementById('chatlog');
+    const msg=inp.value.trim();
+    if(!msg) return;
+    log.innerHTML+=`<div><strong>You:</strong> ${msg}</div>`;
+    let resp='Sorry, I didn’t understand. Try: “I am in 9th class”';
+    const l=msg.toLowerCase();
+    const mapping={
+      '9th':'exams: NEET/ JEE in future, scholarships: NMMS, PM schemes for class 9, subjects foundation',
+      '5th':'Olympiad, scholarships: NSP pre-matric, schemes: mid-day meals, health checkups',
+      '12th':'NEET/ JEE, scholarships: AICTE Pragati, govt schemes for 12th pass',
+      'phd':'UGC NET, INSPIRE, research scholarships, govt exams through PhD eligibility',
+      'nursery':'mid-day meals scheme, ICDS, early education support in government schemes'
+    };
+    for(const key in mapping){
+      if(l.includes(key)){ resp=`For class ${key}: Recommended → ${mapping[key]}`; break;}
+    }
+    log.innerHTML+=`<div><strong>UdaanAI:</strong> ${resp}</div>`;
+    inp.value=''; log.scrollTop=log.scrollHeight;
+  }
+</script>
 </body>
 </html>
