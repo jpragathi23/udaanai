@@ -1,62 +1,14 @@
-// Button Links: Update with your URLs
-const links = {
-  governmentSchemes: "https://www.mygov.in/schemes/",
-  privateSchemes: "https://www.india.gov.in/spotlight/schemes-programmes",
-  governmentScholarships: "https://scholarships.gov.in/",
-  privateScholarships: "https://buddy4study.com/",
-  governmentExams: "https://www.ncs.gov.in/",
-  privateExams: "https://www.shiksha.com/exams/",
-  governmentInternships: "https://internship.aicte-india.org/",
-  privateInternships: "https://internshala.com/",
-  digitalLocker: "https://www.digilocker.gov.in/",
-  aadhar: "https://uidai.gov.in/",
-  nptel: "https://onlinecourses.nptel.ac.in/",
-  mygov: "https://www.mygov.in/",
-  educationNews: "https://timesofindia.indiatimes.com/education"
-};
+// script.js — Updated with category buttons, subcategories, and animated chatbot support
 
-// Link buttons by IDs
-document.getElementById("govSchemes").onclick = () => window.open(links.governmentSchemes, "_blank");
-document.getElementById("privateSchemes").onclick = () => window.open(links.privateSchemes, "_blank");
-document.getElementById("govScholarships").onclick = () => window.open(links.governmentScholarships, "_blank");
-document.getElementById("privateScholarships").onclick = () => window.open(links.privateScholarships, "_blank");
-document.getElementById("govExams").onclick = () => window.open(links.governmentExams, "_blank");
-document.getElementById("privateExams").onclick = () => window.open(links.privateExams, "_blank");
-document.getElementById("govInternships").onclick = () => window.open(links.governmentInternships, "_blank");
-document.getElementById("privateInternships").onclick = () => window.open(links.privateInternships, "_blank");
-document.getElementById("digilocker").onclick = () => window.open(links.digitalLocker, "_blank");
-document.getElementById("aadhar").onclick = () => window.open(links.aadhar, "_blank");
-document.getElementById("nptel").onclick = () => window.open(links.nptel, "_blank");
-document.getElementById("mygov").onclick = () => window.open(links.mygov, "_blank");
-document.getElementById("educationNews").onclick = () => window.open(links.educationNews, "_blank");
+document.addEventListener("DOMContentLoaded", function () { const categoryButtons = document.querySelectorAll(".category-button"); const contentContainer = document.getElementById("content-container");
 
-// Chatbot Logic
-function sendMessage() {
-  const input = document.getElementById("userInput");
-  const chatlog = document.getElementById("chatlog");
-  const message = input.value.trim();
+categoryButtons.forEach((button) => { button.addEventListener("click", () => { const category = button.dataset.category; showSubcategories(category); }); });
 
-  if (message === "") return;
+function showSubcategories(category) { const subcategories = getSubcategories(category); contentContainer.innerHTML = ""; subcategories.forEach((item) => { const card = document.createElement("div"); card.className = "job-card animate-slidein"; card.innerHTML = <h3>${item.title}</h3><ul>${item.links .map((link) => <li><a href="${link.url}" target="_blank">${link.name}</a></li>)  .join("")}</ul>; contentContainer.appendChild(card); }); }
 
-  // Append user message
-  chatlog.innerHTML += `<div><strong>You:</strong> ${message}</div>`;
+function getSubcategories(category) { switch (category) { case "gov-jobs": return [ { title: "UPSC Exams", links: [ { name: "Official UPSC Website", url: "https://upsc.gov.in" }, { name: "Previous Papers", url: "https://www.upsc.gov.in/examinations/previous-question-papers" }, { name: "Syllabus & Notifications", url: "https://www.upsc.gov.in/examinations/syllabus" } ]}, { title: "SSC Exams", links: [ { name: "SSC Official", url: "https://ssc.nic.in" }, { name: "CHSL Info", url: "https://ssc.nic.in/CHSL" } ]}, // Add more subcategories like Railways, Police, Teaching etc. ]; case "private-jobs": return [ { title: "Top Job Portals", links: [ { name: "Naukri", url: "https://www.naukri.com" }, { name: "LinkedIn Jobs", url: "https://linkedin.com/jobs" }, { name: "Internshala", url: "https://internshala.com" }, { name: "FreshersWorld", url: "https://www.freshersworld.com" } ]}, { title: "Company Careers", links: [ { name: "TCS Careers", url: "https://www.tcs.com/careers" }, { name: "Infosys Careers", url: "https://www.infosys.com/careers" } ]} ]; case "competitive-exams": return [ { title: "Engineering Exams", links: [ { name: "JEE Main", url: "https://jeemain.nta.nic.in" }, { name: "JEE Advanced", url: "https://jeeadv.ac.in" } ]}, { title: "Medical Exams", links: [ { name: "NEET", url: "https://neet.nta.nic.in" } ]}, { title: "Other Exams", links: [ { name: "CUET", url: "https://cuet.samarth.ac.in" }, { name: "CLAT", url: "https://consortiumofnlus.ac.in" } ]} ]; case "class-wise-info": return [ { title: "5th Class", links: [ { name: "Navodaya Vidyalaya Exam", url: "https://navodaya.gov.in" }, { name: "Pre-Matric Scholarship", url: "https://scholarships.gov.in" } ]}, { title: "9th Class", links: [ { name: "NTSE Info", url: "https://ncert.nic.in/national-talent-examination.php" }, { name: "Science Olympiads", url: "https://sofworld.org" } ]}, { title: "12th & College", links: [ { name: "KVPY", url: "https://kvpy.iisc.ac.in" }, { name: "INSPIRE Scholarships", url: "https://online-inspire.gov.in" } ]} ]; default: return [ { title: "No Data", links: [] } ]; } }
 
-  // Basic chatbot response
-  let response = "Sorry, I didn’t understand. Please try again!";
-  const msg = message.toLowerCase();
+// Chatbot simulation for class-wise prompt const chatbotInput = document.getElementById("chatbot-input"); const chatbotReply = document.getElementById("chatbot-reply");
 
-  if (msg.includes("scheme")) response = "You can explore schemes from both Government and Private sources using the buttons above.";
-  else if (msg.includes("scholarship")) response = "Check out scholarship opportunities under both Government and Private sections.";
-  else if (msg.includes("exam")) response = "Visit Government & Private Exams for info on upcoming exams.";
-  else if (msg.includes("internship")) response = "Internships are available on AICTE portal and Internshala.";
-  else if (msg.includes("documents") || msg.includes("digilocker")) response = "You can store and access your important documents securely on DigiLocker.";
-  else if (msg.includes("aadhar")) response = "Visit UIDAI official website for Aadhaar-related services.";
-  else if (msg.includes("news")) response = "Stay informed with the latest education news linked above.";
-  else if (msg.includes("hello") || msg.includes("hi")) response = "Hello! I'm your UdaanAI Assistant. Ask me anything about education, schemes, or internships.";
+if (chatbotInput && chatbotReply) { chatbotInput.addEventListener("keypress", (e) => { if (e.key === "Enter") { const text = chatbotInput.value.trim(); if (text.toLowerCase().includes("class")) { chatbotReply.innerHTML = Fetching details for <strong>${text}</strong>...; // Optionally, you can call showSubcategories("class-wise-info"); here } } }); } });
 
-  // Append bot response
-  chatlog.innerHTML += `<div><strong>UdaanAI:</strong> ${response}</div>`;
-
-  input.value = "";
-  chatlog.scrollTop = chatlog.scrollHeight;
-  }
