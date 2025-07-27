@@ -1,42 +1,47 @@
-<!DOCTYPE html><html lang="en"><head>
+<!DOCTYPE html><html lang="en">
+<head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="theme-color" content="#4f46e5" />
+  <meta name="theme-color" content="#ffffff" />
   <title>Udaan - Right Info, Right Time</title>
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="style.css">
   <link rel="manifest" href="manifest.json" />
-  <link rel="icon" href="butterfly-icon.png" type="image/png">
-</head><body>
-  <header>
-    <h1><img src="butterfly-icon.png" class="logo" alt="Udaan" /> Udaan - Right Info, Right Time</h1>
-    <button id="darkModeToggle">🌓 Toggle Dark Mode</button>
-  </header>  <div class="butterfly"></div>  <main id="mainContent">
-    <section id="home">
-      <h2>Explore Opportunities</h2>
-      <div class="button-grid">
-        <button class="main-btn" data-category="scholarships">Scholarships</button>
-        <button class="main-btn" data-category="exams">Exams</button>
-        <button class="main-btn" data-category="jobs">Jobs</button>
-        <button class="main-btn" data-category="internships">Internships</button>
-        <button class="main-btn" data-category="competitions">Competitions</button>
-        <button class="main-btn" data-category="schemes">Schemes</button>
-        <button class="main-btn" data-category="digilocker">DigiLocker</button>
-        <button class="main-btn" data-category="news">Educational News</button>
-        <button class="main-btn" data-category="chatbot">Ask Assistant 🤖</button>
-      </div>
-    </section><section id="subCategory" class="hidden">
-  <h2 id="subHeading"></h2>
-  <div class="button-grid">
-    <button class="sub-btn" data-type="govt">Government</button>
-    <button class="sub-btn" data-type="private">Private</button>
-  </div>
-</section>
-
-<section id="detailSection" class="hidden">
-  <h2 id="detailHeading"></h2>
-  <div class="button-grid" id="detailButtons"></div>
-</section>
-
-  </main>  <div class="chatbot-icon">
-    <img src="butterfly-icon.png" alt="Chatbot" title="Chat with Udaan Assistant" />
-  </div>  <script src="script.js"></script></body></html>
+  <link rel="stylesheet" href="style.css" />
+  <script defer src="script.js"></script>
+</head>
+<body>
+  <!-- Flying Butterfly Animation -->
+  <div class="butterfly-container">
+    <img src="butterfly.gif" alt="Butterfly" class="flying-butterfly">
+  </div>  <!-- Floating Icon -->  <div class="floating-icon">
+    <img src="logo.png" alt="Udaan Logo" />
+    <p class="tagline">Udaan starts from here - Right info, Right time</p>
+  </div>  <!-- Dark Mode Toggle -->  <div class="dark-toggle">
+    <label>
+      <input type="checkbox" id="darkSwitch" /> Dark Mode
+    </label>
+  </div>  <!-- Main Page Buttons -->  <section class="main-menu">
+    <h1>Welcome to Udaan</h1>
+    <div class="grid">
+      <button onclick="openSection('internships')">Internships</button>
+      <button onclick="openSection('jobs')">Jobs</button>
+      <button onclick="openSection('exams')">Exams</button>
+      <button onclick="openSection('scholarships')">Scholarships</button>
+      <button onclick="openSection('competitions')">Competitions</button>
+      <button onclick="openSection('schemes')">Schemes</button>
+      <button onclick="openSection('digilocker')">DigiLocker</button>
+      <button onclick="openSection('edu-news')">Educational News</button>
+      <button onclick="openChatbot()">Chatbot Assistant</button>
+    </div>
+  </section>  <!-- Section Template -->  <section id="section-container" class="hidden">
+    <h2 id="section-title"></h2>
+    <div class="grid">
+      <button onclick="openSubSection('govt')">Government</button>
+      <button onclick="openSubSection('private')">Private</button>
+    </div>
+  </section>  <!-- Subsection Template -->  <section id="sub-section-container" class="hidden">
+    <h3 id="sub-section-title"></h3>
+    <div id="link-list" class="grid"></div>
+  </section>
+</body>
+</html>
