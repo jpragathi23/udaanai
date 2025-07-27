@@ -1,14 +1,57 @@
-// script.js
+let currentCategory = "";
 
-// Navigation Logic function showSection(sectionId) { const sections = document.querySelectorAll(".section"); sections.forEach((section) => section.classList.add("hidden")); document.getElementById(sectionId).classList.remove("hidden"); }
+const openCategory = (category) => {
+  currentCategory = category;
+  document.querySelector('.category-grid').classList.add('hidden');
+  document.getElementById('selected-category-name').innerText = `Select Type - ${capitalize(category)}`;
+  document.getElementById('subcategories').classList.remove('hidden');
+};
 
-// Click handlers for main categories document.addEventListener("DOMContentLoaded", function () { const categoryButtons = document.querySelectorAll(".category-btn"); categoryButtons.forEach((btn) => { btn.addEventListener("click", () => { const category = btn.dataset.category; showSection(category + "-gov-private"); }); });
+const openGovt = () => loadLinks(`${currentCategory}-govt`);
+const openPrivate = () => loadLinks(`${currentCategory}-private`);
 
-// Click handlers for gov/private options const govPrivateButtons = document.querySelectorAll(".gov-private-btn"); govPrivateButtons.forEach((btn) => { btn.addEventListener("click", () => { const category = btn.dataset.category; const type = btn.dataset.type; showSection(category + "-" + type); }); });
+const goBack = () => {
+  document.getElementById('details-page').classList.add('hidden');
+  document.getElementById('subcategories').classList.add('hidden');
+  document.querySelector('.category-grid').classList.remove('hidden');
+};
 
-// Click handlers for final 20 subcategory buttons const subCategoryButtons = document.querySelectorAll(".subcategory-btn"); subCategoryButtons.forEach((btn) => { btn.addEventListener("click", () => { const url = btn.dataset.url; window.open(url, "_blank"); }); });
+const openChatbot = () => {
+  alert("Chatbot Assistant Coming Soon!");
+};
 
-// Optional: Animate Butterfly const butterfly = document.querySelector(".butterfly"); if (butterfly) { let angle = 0; setInterval(() => { angle += 1; butterfly.style.transform = translateY(${Math.sin(angle / 10) * 20}px); }, 30); } });
+function loadLinks(key) {
+  const links = data[key] || [];
+  document.getElementById('links-container').innerHTML = links.map(link =>
+    `<button onclick="window.open('${link.url}', '_blank')">${link.label}</button>`
+  ).join('');
+  document.getElementById('details-heading').innerText = capitalize(currentCategory) + " - " + (key.includes("govt") ? "Government" : "Private");
+  document.getElementById('subcategories').classList.add('hidden');
+  document.getElementById('details-page').classList.remove('hidden');
+}
 
-// Optional: Toggle Dark Mode function toggleDarkMode() { document.body.classList.toggle("dark-mode"); }
+function capitalize(text) {
+  return text.charAt(0).toUpperCase() + text.slice(1);
+}
+
+// Dummy data - Add your 20 links per category here
+const data = {
+  "internships-govt": Array.from({ length: 20 }, (_, i) => ({
+    label: `Gov Internship ${i + 1}`,
+    url: `https://example.com/internship-gov-${i + 1}`
+  })),
+  "internships-private": Array.from({ length: 20 }, (_, i) => ({
+    label: `Private Internship ${i + 1}`,
+    url: `https://example.com/internship-private-${i + 1}`
+  })),
+  "jobs-govt": Array.from({ length: 20 }, (_, i) => ({
+    label: `Gov Job ${i + 1}`,
+    url: `https://example.com/job-gov-${i + 1}`
+  })),
+  "jobs-private": Array.from({ length: 20 }, (_, i) => ({
+    label: `Private Job ${i + 1}`,
+    url: `https://example.com/job-private-${i + 1}`
+  }))
+  // Add rest like exams-govt, exams-private, etc.
+};
 
