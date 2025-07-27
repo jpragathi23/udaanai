@@ -1,73 +1,42 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#6a11cb" />
-  <link rel="manifest" href="manifest.json">
-  <title>UdaanAI - Right Info, Right Time</title>
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
-  <div id="app">
-    <!-- Butterfly Logo and Tagline -->
-    <header class="hero">
-      <img src="butterfly.png" alt="Udaan Butterfly" class="butterfly-fly" />
-      <h1>Udaan starts from here - Right Info, Right Time</h1>
-      <button id="toggle-theme">🌙</button>
-    </header>
-
-    <!-- Main Categories Page -->
-    <section id="main-page" class="page">
-      <div class="grid">
-        <button class="main-btn" onclick="openSubPage('scholarships')">Scholarships</button>
-        <button class="main-btn" onclick="openSubPage('exams')">Exams</button>
-        <button class="main-btn" onclick="openSubPage('jobs')">Jobs</button>
-        <button class="main-btn" onclick="openSubPage('internships')">Internships</button>
-        <button class="main-btn" onclick="openSubPage('competitions')">Competitions</button>
-        <button class="main-btn" onclick="openSubPage('schemes')">Schemes</button>
-        <button class="main-btn" onclick="openSubPage('digilocker')">DigiLocker</button>
-        <button class="main-btn" onclick="openSubPage('eduNews')">Educational News</button>
-        <button class="main-btn chatbot-btn" onclick="toggleChatbot()">🤖 Ask Udaan</button>
+<!DOCTYPE html><html lang="en"><head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#4f46e5" />
+  <title>Udaan - Right Info, Right Time</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="manifest" href="manifest.json" />
+  <link rel="icon" href="butterfly-icon.png" type="image/png">
+</head><body>
+  <header>
+    <h1><img src="butterfly-icon.png" class="logo" alt="Udaan" /> Udaan - Right Info, Right Time</h1>
+    <button id="darkModeToggle">🌓 Toggle Dark Mode</button>
+  </header>  <div class="butterfly"></div>  <main id="mainContent">
+    <section id="home">
+      <h2>Explore Opportunities</h2>
+      <div class="button-grid">
+        <button class="main-btn" data-category="scholarships">Scholarships</button>
+        <button class="main-btn" data-category="exams">Exams</button>
+        <button class="main-btn" data-category="jobs">Jobs</button>
+        <button class="main-btn" data-category="internships">Internships</button>
+        <button class="main-btn" data-category="competitions">Competitions</button>
+        <button class="main-btn" data-category="schemes">Schemes</button>
+        <button class="main-btn" data-category="digilocker">DigiLocker</button>
+        <button class="main-btn" data-category="news">Educational News</button>
+        <button class="main-btn" data-category="chatbot">Ask Assistant 🤖</button>
       </div>
-    </section>
-
-    <!-- SubPage with Govt & Private -->
-    <section id="sub-page" class="page hidden">
-      <h2 id="sub-title">Choose Category</h2>
-      <div class="grid">
-        <button class="sub-btn" onclick="openDetails('govt')">Government</button>
-        <button class="sub-btn" onclick="openDetails('private')">Private</button>
-        <button onclick="goBack()" class="back-btn">⬅ Back</button>
-      </div>
-    </section>
-
-    <!-- Detail Page with Subcategories -->
-    <section id="detail-page" class="page hidden">
-      <h2 id="detail-title">Subcategories</h2>
-      <div class="grid" id="details-container"></div>
-      <button onclick="goBackToSub()" class="back-btn">⬅ Back</button>
-    </section>
-
-    <!-- Chatbot (basic bubble) -->
-    <div id="chatbot" class="hidden">
-      <h4>Hi! I'm Udaan 🤖</h4>
-      <p>Ask me anything about scholarships, exams, etc.</p>
-      <input type="text" placeholder="Ask a question..." />
-    </div>
+    </section><section id="subCategory" class="hidden">
+  <h2 id="subHeading"></h2>
+  <div class="button-grid">
+    <button class="sub-btn" data-type="govt">Government</button>
+    <button class="sub-btn" data-type="private">Private</button>
   </div>
+</section>
 
-  <!-- Service Worker Registration -->
-  <script>
-    if ('serviceWorker' in navigator) {
-      window.addEventListener('load', () => {
-        navigator.serviceWorker.register('/sw.js')
-          .then(reg => console.log('Service Worker Registered'))
-          .catch(err => console.log('SW registration failed:', err));
-      });
-    }
-  </script>
+<section id="detailSection" class="hidden">
+  <h2 id="detailHeading"></h2>
+  <div class="button-grid" id="detailButtons"></div>
+</section>
 
-  <script src="script.js"></script>
-</body>
-</html>
+  </main>  <div class="chatbot-icon">
+    <img src="butterfly-icon.png" alt="Chatbot" title="Chat with Udaan Assistant" />
+  </div>  <script src="script.js"></script></body></html>
