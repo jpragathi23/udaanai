@@ -1,35 +1,69 @@
-/* ========================== Udaan App - style.css ========================== */
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(to right, #c2e9fb, #a1c4fd);
+  overflow-x: hidden;
+}
 
-/* Global Styles */
+.app-container {
+  text-align: center;
+  padding: 20px;
+}
 
-{ margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+.title {
+  font-size: 3rem;
+  margin-bottom: 30px;
+  color: #4a148c;
+}
 
+.category-grid,
+.links-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+  gap: 15px;
+  margin: 20px;
+}
 
-body { background: linear-gradient(135deg, #e0f7fa, #fce4ec); color: #333; padding: 20px; overflow-x: hidden; transition: background 0.4s ease; }
+button {
+  padding: 12px;
+  border: none;
+  border-radius: 10px;
+  background-color: #ff6f61;
+  color: white;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
 
-h1, h2 { text-align: center; margin-bottom: 20px; }
+button:hover {
+  background-color: #ff3d00;
+}
 
-.container { display: flex; flex-wrap: wrap; justify-content: center; gap: 16px; padding: 20px; }
+.hidden {
+  display: none;
+}
 
-.button { background-color: #ffffff; border: 2px solid #03a9f4; color: #03a9f4; padding: 12px 24px; font-size: 16px; border-radius: 12px; cursor: pointer; transition: all 0.3s ease; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); }
+/* Butterfly animation */
+.butterfly {
+  position: fixed;
+  width: 40px;
+  height: 40px;
+  background-image: url('https://cdn-icons-png.flaticon.com/512/616/616408.png');
+  background-size: cover;
+  animation: fly 12s linear infinite;
+}
 
-.button:hover { background-color: #03a9f4; color: white; transform: translateY(-2px); }
-
-.sub-section { display: none; flex-direction: column; margin-top: 10px; padding-left: 30px; gap: 10px; }
-
-.visible { display: flex !important; }
-
-.floating-chatbot { position: fixed; bottom: 20px; right: 20px; background-color: #ff4081; color: white; padding: 14px; border-radius: 50%; font-size: 20px; cursor: pointer; box-shadow: 0 4px 12px rgba(0,0,0,0.2); z-index: 999; animation: bounce 2s infinite; }
-
-/* Dark Mode */ .dark-mode { background: linear-gradient(135deg, #263238, #1e1e1e); color: #f1f1f1; }
-
-.dark-mode .button { border-color: #ffeb3b; color: #ffeb3b; }
-
-.dark-mode .button:hover { background-color: #ffeb3b; color: #1e1e1e; }
-
-/* Butterfly Animation */ .butterfly { position: fixed; top: 10%; left: -100px; width: 80px; height: 80px; background: url('icons/butterfly.gif') no-repeat center/contain; animation: flyAcross 15s linear infinite; z-index: 1; }
-
-@keyframes flyAcross { 0% { transform: translateX(0) translateY(0); } 25% { transform: translateX(25vw) translateY(-10vh); } 50% { transform: translateX(50vw) translateY(10vh); } 75% { transform: translateX(75vw) translateY(-5vh); } 100% { transform: translateX(100vw) translateY(0); } }
-
-@keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
-
+@keyframes fly {
+  0% {
+    top: 90%;
+    left: -10%;
+  }
+  50% {
+    top: 10%;
+    left: 50%;
+  }
+  100% {
+    top: 90%;
+    left: 110%;
+  }
+}
