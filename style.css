@@ -1,114 +1,35 @@
-/* Reset and base styles */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: "Segoe UI", sans-serif;
-}
+/* ========================== Udaan App - style.css ========================== */
 
-body {
-  background: #f0f8ff;
-  color: #333;
-  padding: 20px;
-}
+/* Global Styles */
 
-header {
-  text-align: center;
-  margin-bottom: 30px;
-}
+{ margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
 
-.logo {
-  width: 80px;
-  height: 80px;
-}
 
-h1 {
-  font-size: 2.5rem;
-  color: #6a1b9a;
-  margin-top: 10px;
-}
+body { background: linear-gradient(135deg, #e0f7fa, #fce4ec); color: #333; padding: 20px; overflow-x: hidden; transition: background 0.4s ease; }
 
-.tagline {
-  font-size: 1.2rem;
-  color: #8e24aa;
-  font-style: italic;
-}
+h1, h2 { text-align: center; margin-bottom: 20px; }
 
-/* Button Grid Section */
-.button-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-  gap: 20px;
-  margin: 30px 0;
-  padding: 0 10px;
-}
+.container { display: flex; flex-wrap: wrap; justify-content: center; gap: 16px; padding: 20px; }
 
-.button-grid button {
-  padding: 15px;
-  font-size: 1rem;
-  border: none;
-  border-radius: 12px;
-  background: linear-gradient(45deg, #ba68c8, #9575cd);
-  color: white;
-  cursor: pointer;
-  transition: transform 0.2s ease;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
+.button { background-color: #ffffff; border: 2px solid #03a9f4; color: #03a9f4; padding: 12px 24px; font-size: 16px; border-radius: 12px; cursor: pointer; transition: all 0.3s ease; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); }
 
-.button-grid button:hover {
-  transform: translateY(-5px);
-  background: linear-gradient(45deg, #ab47bc, #7e57c2);
-}
+.button:hover { background-color: #03a9f4; color: white; transform: translateY(-2px); }
 
-/* Chatbot Section */
-.chatbox {
-  background: #ffffff;
-  border-radius: 15px;
-  padding: 20px;
-  max-width: 600px;
-  margin: 0 auto;
-  box-shadow: 0 0 10px rgba(106, 27, 154, 0.2);
-}
+.sub-section { display: none; flex-direction: column; margin-top: 10px; padding-left: 30px; gap: 10px; }
 
-.chatbox.hidden {
-  display: none;
-}
+.visible { display: flex !important; }
 
-#chatlog {
-  height: 200px;
-  overflow-y: auto;
-  margin-bottom: 15px;
-  border: 1px solid #ddd;
-  padding: 10px;
-  border-radius: 10px;
-  background: #f9f1fb;
-}
+.floating-chatbot { position: fixed; bottom: 20px; right: 20px; background-color: #ff4081; color: white; padding: 14px; border-radius: 50%; font-size: 20px; cursor: pointer; box-shadow: 0 4px 12px rgba(0,0,0,0.2); z-index: 999; animation: bounce 2s infinite; }
 
-#userInput {
-  width: 75%;
-  padding: 10px;
-  border: 1px solid #ba68c8;
-  border-radius: 8px;
-  margin-right: 10px;
-}
+/* Dark Mode */ .dark-mode { background: linear-gradient(135deg, #263238, #1e1e1e); color: #f1f1f1; }
 
-.chatbox button {
-  background-color: #7e57c2;
-  color: white;
-  border: none;
-  padding: 10px 15px;
-  border-radius: 8px;
-  cursor: pointer;
-}
+.dark-mode .button { border-color: #ffeb3b; color: #ffeb3b; }
 
-.chatbox button:hover {
-  background-color: #6a1b9a;
-}
+.dark-mode .button:hover { background-color: #ffeb3b; color: #1e1e1e; }
 
-/* Footer */
-footer {
-  text-align: center;
-  margin-top: 40px;
-  color: #999;
-  font-size: 0.9rem;
-}
+/* Butterfly Animation */ .butterfly { position: fixed; top: 10%; left: -100px; width: 80px; height: 80px; background: url('icons/butterfly.gif') no-repeat center/contain; animation: flyAcross 15s linear infinite; z-index: 1; }
+
+@keyframes flyAcross { 0% { transform: translateX(0) translateY(0); } 25% { transform: translateX(25vw) translateY(-10vh); } 50% { transform: translateX(50vw) translateY(10vh); } 75% { transform: translateX(75vw) translateY(-5vh); } 100% { transform: translateX(100vw) translateY(0); } }
+
+@keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+
