@@ -1,47 +1,43 @@
-<!DOCTYPE html><html lang="en">
+<!DOCTYPE html>
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="theme-color" content="#ffffff" />
-  <title>Udaan - Right Info, Right Time</title>
-  <link rel="stylesheet" href="style.css">
-  <link rel="manifest" href="manifest.json" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <link rel="stylesheet" href="style.css" />
-  <script defer src="script.js"></script>
+  <link rel="manifest" href="manifest.json" />
+  <title>UdaanAI</title>
 </head>
 <body>
-  <!-- Flying Butterfly Animation -->
-  <div class="butterfly-container">
-    <img src="butterfly.gif" alt="Butterfly" class="flying-butterfly">
-  </div>  <!-- Floating Icon -->  <div class="floating-icon">
-    <img src="logo.png" alt="Udaan Logo" />
-    <p class="tagline">Udaan starts from here - Right info, Right time</p>
-  </div>  <!-- Dark Mode Toggle -->  <div class="dark-toggle">
-    <label>
-      <input type="checkbox" id="darkSwitch" /> Dark Mode
-    </label>
-  </div>  <!-- Main Page Buttons -->  <section class="main-menu">
-    <h1>Welcome to Udaan</h1>
-    <div class="grid">
-      <button onclick="openSection('internships')">Internships</button>
-      <button onclick="openSection('jobs')">Jobs</button>
-      <button onclick="openSection('exams')">Exams</button>
-      <button onclick="openSection('scholarships')">Scholarships</button>
-      <button onclick="openSection('competitions')">Competitions</button>
-      <button onclick="openSection('schemes')">Schemes</button>
-      <button onclick="openSection('digilocker')">DigiLocker</button>
-      <button onclick="openSection('edu-news')">Educational News</button>
-      <button onclick="openChatbot()">Chatbot Assistant</button>
+  <div class="app-container">
+    <h1 class="title">UdaanAI</h1>
+    <div class="category-grid">
+      <button onclick="openCategory('scholarships')">Scholarships</button>
+      <button onclick="openCategory('exams')">Exams</button>
+      <button onclick="openCategory('jobs')">Jobs</button>
+      <button onclick="openCategory('internships')">Internships</button>
+      <button onclick="openCategory('competitions')">Competitions</button>
+      <button onclick="openCategory('schemes')">Schemes</button>
+      <button onclick="openCategory('digilocker')">DigiLocker</button>
+      <button onclick="openCategory('news')">Educational News</button>
+      <button onclick="openChatbot()">Chatbot Assistant 🤖</button>
     </div>
-  </section>  <!-- Section Template -->  <section id="section-container" class="hidden">
-    <h2 id="section-title"></h2>
-    <div class="grid">
-      <button onclick="openSubSection('govt')">Government</button>
-      <button onclick="openSubSection('private')">Private</button>
+
+    <div id="subcategories" class="hidden">
+      <h2 id="selected-category-name"></h2>
+      <button onclick="openGovt()">Government</button>
+      <button onclick="openPrivate()">Private</button>
+      <button onclick="goBack()">⬅ Back</button>
     </div>
-  </section>  <!-- Subsection Template -->  <section id="sub-section-container" class="hidden">
-    <h3 id="sub-section-title"></h3>
-    <div id="link-list" class="grid"></div>
-  </section>
+
+    <div id="details-page" class="hidden">
+      <h2 id="details-heading"></h2>
+      <div class="links-grid" id="links-container"></div>
+      <button onclick="goBack()">⬅ Back</button>
+    </div>
+
+    <div class="butterfly"></div>
+  </div>
+
+  <script src="script.js"></script>
 </body>
 </html>
