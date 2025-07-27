@@ -1,36 +1,14 @@
-/* ========================== Udaan App - style.css ========================== */
+// script.js
 
-/* Global Styles */
+// Navigation Logic function showSection(sectionId) { const sections = document.querySelectorAll(".section"); sections.forEach((section) => section.classList.add("hidden")); document.getElementById(sectionId).classList.remove("hidden"); }
 
-{ margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+// Click handlers for main categories document.addEventListener("DOMContentLoaded", function () { const categoryButtons = document.querySelectorAll(".category-btn"); categoryButtons.forEach((btn) => { btn.addEventListener("click", () => { const category = btn.dataset.category; showSection(category + "-gov-private"); }); });
 
+// Click handlers for gov/private options const govPrivateButtons = document.querySelectorAll(".gov-private-btn"); govPrivateButtons.forEach((btn) => { btn.addEventListener("click", () => { const category = btn.dataset.category; const type = btn.dataset.type; showSection(category + "-" + type); }); });
 
-body { background: linear-gradient(135deg, #e0f7fa, #fce4ec); color: #333; padding: 20px; overflow-x: hidden; transition: background 0.4s ease; }
+// Click handlers for final 20 subcategory buttons const subCategoryButtons = document.querySelectorAll(".subcategory-btn"); subCategoryButtons.forEach((btn) => { btn.addEventListener("click", () => { const url = btn.dataset.url; window.open(url, "_blank"); }); });
 
-h1, h2 { text-align: center; margin-bottom: 20px; }
+// Optional: Animate Butterfly const butterfly = document.querySelector(".butterfly"); if (butterfly) { let angle = 0; setInterval(() => { angle += 1; butterfly.style.transform = translateY(${Math.sin(angle / 10) * 20}px); }, 30); } });
 
-.container { display: flex; flex-wrap: wrap; justify-content: center; gap: 16px; padding: 20px; }
-
-.button { background-color: #ffffff; border: 2px solid #03a9f4; color: #03a9f4; padding: 12px 24px; font-size: 16px; border-radius: 12px; cursor: pointer; transition: all 0.3s ease; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); }
-
-.button:hover { background-color: #03a9f4; color: white; transform: translateY(-2px); }
-
-.sub-section { display: none; flex-direction: column; margin-top: 10px; padding-left: 30px; gap: 10px; }
-
-.visible { display: flex !important; }
-
-.floating-chatbot { position: fixed; bottom: 20px; right: 20px; background-color: #ff4081; color: white; padding: 14px; border-radius: 50%; font-size: 20px; cursor: pointer; box-shadow: 0 4px 12px rgba(0,0,0,0.2); z-index: 999; animation: bounce 2s infinite; }
-
-/* Dark Mode */ .dark-mode { background: linear-gradient(135deg, #263238, #1e1e1e); color: #f1f1f1; }
-
-.dark-mode .button { border-color: #ffeb3b; color: #ffeb3b; }
-
-.dark-mode .button:hover { background-color: #ffeb3b; color: #1e1e1e; }
-
-/* Butterfly Animation */ .butterfly { position: fixed; top: 10%; left: -100px; width: 80px; height: 80px; background: url('icons/butterfly.gif') no-repeat center/contain; animation: flyAcross 15s linear infinite; z-index: 1; }
-
-@keyframes flyAcross { 0% { transform: translateX(0) translateY(0); } 25% { transform: translateX(25vw) translateY(-10vh); } 50% { transform: translateX(50vw) translateY(10vh); } 75% { transform: translateX(75vw) translateY(-5vh); } 100% { transform: translateX(100vw) translateY(0); } }
-
-@keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
-
+// Optional: Toggle Dark Mode function toggleDarkMode() { document.body.classList.toggle("dark-mode"); }
 
