@@ -2,41 +2,35 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Udaan App</title>
   <link rel="stylesheet" href="style.css" />
-  <link rel="manifest" href="manifest.json" />
-  <title>UdaanAI</title>
 </head>
 <body>
-  <div class="app-container">
-    <h1 class="title">UdaanAI</h1>
-    <div class="category-grid">
-      <button onclick="openCategory('scholarships')">Scholarships</button>
-      <button onclick="openCategory('exams')">Exams</button>
-      <button onclick="openCategory('jobs')">Jobs</button>
-      <button onclick="openCategory('internships')">Internships</button>
-      <button onclick="openCategory('competitions')">Competitions</button>
-      <button onclick="openCategory('schemes')">Schemes</button>
-      <button onclick="openCategory('digilocker')">DigiLocker</button>
-      <button onclick="openCategory('news')">Educational News</button>
-      <button onclick="openChatbot()">Chatbot Assistant 🤖</button>
-    </div>
+  <header>
+    <img src="logo.png" alt="Udaan Logo" class="logo" />
+    <h1>Udaan App</h1>
+    <p class="tagline">Empowering Girls, One Step at a Time</p>
+  </header>
 
-    <div id="subcategories" class="hidden">
-      <h2 id="selected-category-name"></h2>
-      <button onclick="openGovt()">Government</button>
-      <button onclick="openPrivate()">Private</button>
-      <button onclick="goBack()">⬅ Back</button>
-    </div>
+  <section class="button-grid">
+    <button onclick="openPage('about.html')">About Us</button>
+    <button onclick="openPage('chapters.html')">Our Chapters</button>
+    <button onclick="openPage('affirmations.html')">Daily Affirmations</button>
+    <button onclick="openPage('resources.html')">Resources</button>
+    <button onclick="openPage('camp.html')">Join a Camp</button>
+    <button onclick="openPage('contact.html')">Contact Us</button>
+  </section>
 
-    <div id="details-page" class="hidden">
-      <h2 id="details-heading"></h2>
-      <div class="links-grid" id="links-container"></div>
-      <button onclick="goBack()">⬅ Back</button>
-    </div>
+  <section class="chatbox hidden" id="chatbotSection">
+    <div id="chatlog"></div>
+    <input type="text" id="userInput" placeholder="Ask me anything..." />
+    <button onclick="sendMessage()">Send</button>
+  </section>
 
-    <div class="butterfly"></div>
-  </div>
+  <footer>
+    <p>© 2025 Udaan App. All rights reserved.</p>
+  </footer>
 
   <script src="script.js"></script>
 </body>
