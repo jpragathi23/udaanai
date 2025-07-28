@@ -1,29 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>UdaanAI - Career Navigator</title>
-  <link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8">
+  <title>UdaanAI - Home</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="logo-container">
-    <img src="butterfly.svg" alt="UdaanAI Logo" class="butterfly-logo" />
+  <div class="butterfly-container">
+    <img src="butterfly.gif" alt="Butterfly Logo" class="butterfly">
+    <h1 class="app-title">UdaanAI</h1>
   </div>
 
-  <h1 class="main-title">UdaanAI</h1>
-  <p class="subtitle">Your Gateway to Opportunities</p>
-
-  <div class="main-buttons">
-    <a href="govt-jobs.html" class="category-btn">Government Jobs</a>
-    <a href="private-jobs.html" class="category-btn">Private Jobs</a>
-    <a href="exams.html" class="category-btn">Exams</a>
-    <a href="scholarships.html" class="category-btn">Scholarships</a>
-    <a href="schemes.html" class="category-btn">Schemes</a>
+  <div class="button-container">
+    <button onclick="openTab('govt-exams.html')">Government Exams</button>
+    <button onclick="openTab('private-exams.html')">Private Exams</button>
+    <button onclick="openTab('govt-scholarships.html')">Government Scholarships</button>
+    <button onclick="openTab('private-scholarships.html')">Private Scholarships</button>
+    <button onclick="openTab('govt-schemes.html')">Government Schemes</button>
+    <button onclick="openTab('private-schemes.html')">Private Schemes</button>
+    <button onclick="openTab('govt-internships.html')">Government Internships</button>
+    <button onclick="openTab('private-internships.html')">Private Internships</button>
+    <button onclick="openTab('nptel.html')">NPTEL</button>
+    <button onclick="openTab('digilocker.html')">DigiLocker</button>
+    <button onclick="openTab('educational-news.html')">Educational News</button>
+    <button onclick="openTab('chatbot.html')">Chatbot</button>
   </div>
 
-  <footer>
-    <p>Made by Pragathi | B.Tech EEE | JNTUH</p>
-  </footer>
+  <script>
+    function openTab(url) {
+      window.open(url, '_blank');
+    }
+  </script>
 </body>
 </html>
