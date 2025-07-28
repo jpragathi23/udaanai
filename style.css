@@ -1,76 +1,178 @@
 /* ========================== UdaanAI - style.css ========================== */
 
-/* Reset */
+/* Reset and Base Styles */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-/* Body Background & Font */
 body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background: linear-gradient(135deg, #e0f7fa, #fce4ec);
+  background: linear-gradient(120deg, #e0f7fa, #fce4ec);
   color: #333;
   padding: 20px;
-  text-align: center;
   overflow-x: hidden;
+  transition: background 0.4s ease;
+  position: relative;
+  min-height: 100vh;
 }
 
-/* Logo */
-.logo-container {
-  display: flex;
-  justify-content: center;
-  margin-top: 10px;
-}
-.butterfly-logo {
-  width: 160px;
-  height: 130px;
-  filter: drop-shadow(0 0 4px rgba(255, 105, 180, 0.5));
-}
-
-/* Headings */
-.main-title {
-  font-size: 3rem;
-  font-weight: bold;
-  color: #FF69B4;
-  text-shadow: 1px 1px 4px #6a5acd;
-}
-.subtitle {
-  font-size: 1.2rem;
-  margin: 10px 0 30px;
-  color: #555;
+/* Butterfly Animation */
+.butterfly {
+  position: fixed;
+  top: 10%;
+  left: 0;
+  width: 60px;
+  height: 60px;
+  background-image: url('https://jpragathi23.github.io/udaanai/butterfly.gif');
+  background-size: contain;
+  background-repeat: no-repeat;
+  animation: fly 15s linear infinite;
+  z-index: 0;
+  pointer-events: none;
 }
 
-/* Buttons Layout */
-.main-buttons {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-  gap: 20px;
-  max-width: 800px;
-  margin: 0 auto;
+@keyframes fly {
+  0% {
+    transform: translate(0, 0) rotate(0deg);
+    opacity: 0.8;
+  }
+  50% {
+    transform: translate(90vw, 30vh) rotate(180deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(0vw, 70vh) rotate(360deg);
+    opacity: 0.6;
+  }
 }
-.category-btn {
+
+/* Header */
+header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.logo {
+  width: 90px;
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+/* Sections */
+.section {
+  margin: 30px 0;
+  padding: 25px;
+  background: white;
+  border-radius: 15px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+/* Buttons */
+.btn {
   display: inline-block;
-  padding: 14px 20px;
-  background-color: #fff0f6;
-  border: 2px solid #FF69B4;
-  color: #FF69B4;
-  text-decoration: none;
-  font-weight: 600;
-  border-radius: 12px;
-  transition: 0.3s ease;
-  box-shadow: 0 2px 6px rgba(255, 105, 180, 0.3);
-}
-.category-btn:hover {
-  background-color: #FF69B4;
+  margin: 10px;
+  padding: 12px 20px;
+  background-color: #6200ea;
   color: white;
-  box-shadow: 0 4px 12px rgba(255, 105, 180, 0.5);
+  border-radius: 12px;
+  text-decoration: none;
+  font-size: 16px;
+  transition: 0.3s ease;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+}
+
+.btn:hover {
+  background-color: #3700b3;
+  transform: scale(1.05);
+}
+
+/* Responsive Grid */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 15px;
+  margin-top: 20px;
 }
 
 /* Footer */
 footer {
+  text-align: center;
   margin-top: 60px;
-  font-size: 0.9rem;
-  color: #aaa;
+  padding: 20px;
+  background: #6200ea;
+  color: white;
+  border-radius: 12px;
+}
+
+/* Floating Chatbot Button */
+.chatbot-button {
+  position: fixed;
+  bottom: 25px;
+  right: 25px;
+  background-color: #6200ea;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  font-size: 30px;
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+  z-index: 1000;
+}
+
+.chatbot-window {
+  position: fixed;
+  bottom: 100px;
+  right: 25px;
+  width: 320px;
+  max-height: 450px;
+  background: #f9f9f9;
+  border-radius: 15px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  display: none;
+  flex-direction: column;
+  overflow: hidden;
+  z-index: 1000;
+}
+
+.chatbot-header {
+  background: #6200ea;
+  color: white;
+  padding: 12px;
+  text-align: center;
+  font-weight: bold;
+}
+
+.chatbot-body {
+  padding: 10px;
+  overflow-y: auto;
+  flex-grow: 1;
+  font-size: 14px;
+}
+
+.chatbot-input {
+  display: flex;
+  border-top: 1px solid #ccc;
+}
+
+.chatbot-input input {
+  flex-grow: 1;
+  padding: 8px;
+  border: none;
+  font-size: 14px;
+}
+
+.chatbot-input button {
+  padding: 8px 10px;
+  background: #6200ea;
+  color: white;
+  border: none;
+  cursor: pointer;
 }
