@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Private Exams - UdaanAI</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, #fce4ec, #e0f7fa);
+      margin: 0;
+      padding: 20px;
+    }
+    .logo {
+      display: block;
+      margin: 0 auto 20px;
+      width: 100px;
+    }
+    h1 {
+      text-align: center;
+      color: #444;
+    }
+    .button-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 15px;
+      padding: 20px;
+    }
+    .exam-button {
+      padding: 15px;
+      border: none;
+      border-radius: 10px;
+      background-color: #8e24aa;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    .exam-button:hover {
+      background-color: #6a1b9a;
+    }
+  </style>
+</head>
+<body>
+  <img src="butterfly.gif" alt="Butterfly Logo" class="logo">
+  <h1>Private Exams</h1>
+  <div class="button-container">
+    <button class="exam-button" onclick="openLink('https://www.amcat.com')">AMCAT</button>
+    <button class="exam-button" onclick="openLink('https://www.elitmus.com')">eLitmus</button>
+    <button class="exam-button" onclick="openLink('https://www.tcs.com/careers/nextstep')">TCS NQT</button>
+    <button class="exam-button" onclick="openLink('https://www.wipro.com/careers')">Wipro NLTH</button>
+    <button class="exam-button" onclick="openLink('https://www.infosys.com/careers')">Infosys Test</button>
+    <button class="exam-button" onclick="openLink('https://careers.accenture.com')">Accenture Placement</button>
+    <button class="exam-button" onclick="openLink('https://www.hackerearth.com/challenges/')">HackerEarth</button>
+    <button class="exam-button" onclick="openLink('https://www.hackerrank.com/skills-directory')">HackerRank</button>
+    <button class="exam-button" onclick="openLink('https://www.codechef.com/contests')">CodeChef Contests</button>
+    <button class="exam-button" onclick="openLink('https://www.topcoder.com/challenges')">TopCoder</button>
+    <button class="exam-button" onclick="openLink('https://www.geeksforgeeks.org/job-a-thon/')">Job-a-thon</button>
+    <button class="exam-button" onclick="openLink('https://careers.cognizant.com')">Cognizant GenC</button>
+    <button class="exam-button" onclick="openLink('https://careers.hcltech.com')">HCL Test</button>
+    <button class="exam-button" onclick="openLink('https://careers.lntinfotech.com')">L&T Infotech</button>
+    <button class="exam-button" onclick="openLink('https://www.zohocorp.com/careers')">Zoho Placement</button>
+    <button class="exam-button" onclick="openLink('https://www.sap.com/about/careers.html')">SAP Placement</button>
+    <button class="exam-button" onclick="openLink('https://www.ibm.com/in-en/employment/')">IBM Test</button>
+    <button class="exam-button" onclick="openLink('https://www.oracle.com/in/corporate/careers/')">Oracle Test</button>
+    <button class="exam-button" onclick="openLink('https://careers.deloitte.com')">Deloitte Aptitude</button>
+    <button class="exam-button" onclick="openLink('https://careers.pwc.com')">PwC Test</button>
+  </div>
+
+  <script>
+    function openLink(url) {
+      window.open(url, '_blank');
+    }
+  </script>
+</body>
+</html>
