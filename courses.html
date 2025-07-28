@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Courses - UdaanAI</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, #e1f5fe, #ede7f6);
+      margin: 0;
+      padding: 20px;
+    }
+
+    .logo {
+      display: block;
+      margin: 0 auto 20px;
+      width: 100px;
+      animation: float 3s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
+    h1 {
+      text-align: center;
+      color: #3f51b5;
+    }
+
+    .filter-box {
+      max-width: 600px;
+      margin: 20px auto;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    input[type="text"] {
+      padding: 12px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      font-size: 16px;
+    }
+
+    .course-results {
+      margin-top: 30px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 15px;
+      padding: 10px;
+    }
+
+    .course-card {
+      background: white;
+      padding: 15px;
+      border-radius: 10px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      text-align: center;
+      font-weight: bold;
+      color: #333;
+    }
+  </style>
+</head>
+<body>
+  <img src="assets/butterfly.gif" alt="Butterfly Logo" class="logo" />
+  <h1>Explore Eligible Courses</h1>
+
+  <div class="filter-box">
+    <input type="text" id="classInput" placeholder="Enter your class (e.g., 5th, 10th, B.Tech, M.Tech, PhD)" onkeyup="filterCourses()" />
+  </div>
+
+  <div class="course-results" id="courseContainer"></div>
+
+  <script>
+    const courseData = {
+      "5th": ["Navodaya Entrance", "Abacus", "Mental Math", "Science Olympiad"],
+      "6th": ["Navodaya Prep", "Sainik School Prep", "Science Projects"],
+      "7th": ["Sainik School", "General Science", "Quiz Competitions"],
+      "8th": ["NTSE Stage-1", "Math Olympiad", "Coding for Kids"],
+      "9th": ["NTSE", "NSEJS", "Robotics Basics"],
+      "10th": ["NTSE", "OMPLAI", "NCC Entrance", "Polytechnic Prep"],
+      "11th": ["IIT Foundation", "KVPY", "Junior Research"],
+      "12th": ["JEE/NEET", "BITSAT", "Scholarships", "Internships"],
+      "B.Tech": ["GATE", "Internships", "NPTEL", "IEEE Projects"],
+      "M.Tech": ["GATE", "RA/TA Opportunities", "PhD Entrance"],
+      "PhD": ["Research Fellowship", "Postdoc Courses", "UGC NET"]
+    };
+
+    function filterCourses() {
+      const input = document.getElementById("classInput").value.toLowerCase().trim();
+      const output = document.getElementById("courseContainer");
+      output.innerHTML = "";
+
+      const matchedClass = Object.keys(courseData).find(cls => cls.toLowerCase() === input);
+      
+      if (matchedClass) {
+        courseData[matchedClass].forEach(course => {
+          const card = document.createElement("div");
+          card.className = "course-card";
+          card.innerText = course;
+          output.appendChild(card);
+        });
+      } else if (input !== "") {
+        output.innerHTML = "<p style='text-align:center;color:gray;'>No results. Please enter a valid class like 10th, B.Tech, etc.</p>";
+      }
+    }
+  </script>
+</body>
+</html>
