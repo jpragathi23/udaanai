@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Educational News - UdaanAI</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, #ede7f6, #f3e5f5);
+      margin: 0;
+      padding: 20px;
+    }
+    .logo {
+      display: block;
+      margin: 0 auto 20px;
+      width: 100px;
+      animation: float 3s ease-in-out infinite;
+    }
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+    h1 {
+      text-align: center;
+      color: #4a148c;
+    }
+    .news-box {
+      margin: 20px auto;
+      padding: 20px;
+      border-radius: 10px;
+      background-color: #fff;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      max-width: 800px;
+    }
+    .news-item {
+      margin-bottom: 15px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid #ccc;
+    }
+    .news-item:last-child {
+      border-bottom: none;
+    }
+    .news-title {
+      font-weight: bold;
+      color: #6a1b9a;
+    }
+    .news-link {
+      color: #1a237e;
+      text-decoration: none;
+    }
+    .news-link:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <img src="assets/butterfly.gif" alt="Butterfly Logo" class="logo"/>
+  <h1>Educational News</h1>
+
+  <div class="news-box">
+    <div class="news-item">
+      <div class="news-title">CBSE Launches AI Curriculum for Classes 6–12</div>
+      <a href="https://cbse.gov.in/" class="news-link" target="_blank">Visit CBSE Website</a>
+    </div>
+    <div class="news-item">
+      <div class="news-title">NEP 2020 Updates: Multi-disciplinary approach introduced</div>
+      <a href="https://www.education.gov.in/" class="news-link" target="_blank">Read More at MoE</a>
+    </div>
+    <div class="news-item">
+      <div class="news-title">UGC Approves 4-Year Undergraduate Program</div>
+      <a href="https://www.ugc.gov.in/" class="news-link" target="_blank">UGC Official Website</a>
+    </div>
+    <div class="news-item">
+      <div class="news-title">NTA Releases Exam Calendar 2025</div>
+      <a href="https://nta.ac.in/" class="news-link" target="_blank">NTA Website</a>
+    </div>
+    <div class="news-item">
+      <div class="news-title">GATE 2025 Application Opens Soon</div>
+      <a href="https://gate.iitk.ac.in/" class="news-link" target="_blank">Apply Here</a>
+    </div>
+  </div>
+</body>
+</html>
