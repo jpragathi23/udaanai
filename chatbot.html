@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>UdaanAI Chatbot</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #f5f5f5;
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+    }
+
+    .chatbox {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      border-radius: 10px;
+      background-color: #ffffff;
+      overflow: hidden;
+    }
+
+    .chat-header {
+      background-color: #4caf50;
+      color: white;
+      padding: 10px;
+      text-align: center;
+    }
+
+    .chat-messages {
+      flex-grow: 1;
+      padding: 10px;
+      overflow-y: auto;
+      border-top: 1px solid #ccc;
+      border-bottom: 1px solid #ccc;
+    }
+
+    .chat-input {
+      display: flex;
+      border-top: 1px solid #ccc;
+    }
+
+    .chat-input input {
+      flex-grow: 1;
+      padding: 10px;
+      border: none;
+      outline: none;
+    }
+
+    .chat-input button {
+      padding: 10px;
+      background-color: #4caf50;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+
+    .bot {
+      color: #333;
+      background: #e0f7fa;
+      padding: 6px 10px;
+      border-radius: 5px;
+      margin: 5px 0;
+      align-self: flex-start;
+    }
+
+    .user {
+      color: white;
+      background: #4caf50;
+      padding: 6px 10px;
+      border-radius: 5px;
+      margin: 5px 0;
+      align-self: flex-end;
+    }
+  </style>
+</head>
+<body>
+  <div class="chatbox">
+    <div class="chat-header">UdaanAI Chatbot</div>
+    <div class="chat-messages" id="chatMessages"></div>
+    <div class="chat-input">
+      <input type="text" id="userInput" placeholder="Type your class or question...">
+      <button onclick="sendMessage()">Send</button>
+    </div>
+  </div>
+
+  <script>
+    const chatMessages = document.getElementById('chatMessages');
+
+    function sendMessage() {
+      const userInput = document.getElementById('userInput');
+      const message = userInput.value.trim();
+      if (!message) return;
+
+      appendMessage(message, 'user');
+      userInput.value = '';
+      setTimeout(() => replyBot(message.toLowerCase()), 500);
+    }
+
+    function appendMessage(text, sender) {
+      const msg = document.createElement('div');
+      msg.className = sender;
+      msg.innerText = text;
+      chatMessages.appendChild(msg);
+      chatMessages.scrollTop = chatMessages.scrollHeight;
+    }
+
+    function replyBot(message) {
+      let reply = "";
+      if (message.includes("5th")) {
+        reply = "Exams: Navodaya, Sainik School\nScholarships: Pre-Matric\nSchemes: Balika Samriddhi Yojana";
+      } else if (message.includes("10th")) {
+        reply = "Exams: NTSE, OMPLAI\nScholarships: NMMS, Vidyadhan\nSchemes: Inspire Award, KYP";
+      } else if (message.includes("12th")) {
+        reply = "Exams: JEE, NEET, CLAT\nScholarships: INSPIRE, Pragati, Vidya Lakshmi\nSchemes: PMSSS, PM-YASASVI";
+      } else if (message.includes("btech")) {
+        reply = "Exams: GATE, IES, DRDO\nScholarships: AICTE Pragati, Saksham\nSchemes: DST Inspire, PMRF";
+      } else if (message.includes("phd")) {
+        reply = "Exams: UGC NET, CSIR\nScholarships: PMRF, DST Inspire\nSchemes: Research Fellowship";
+      } else if (message.includes("document")) {
+        reply = "Common documents: Aadhar, Marksheets, Bank Passbook, Income & Caste Certificate, Photo";
+      } else if (message.includes("apply")) {
+        reply = "To apply, visit the official site mentioned in each section (e.g., NTSE website).";
+      } else {
+        reply = "Please enter your class (e.g., 10th, BTech) or ask about 'documents', 'apply', etc.";
+      }
+
+      appendMessage(reply, 'bot');
+      window.parent.postMessage({ classLevel: message }, '*');
+    }
+  </script>
+</body>
+</html>
