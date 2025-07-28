@@ -1,137 +1,142 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>UdaanAI Chatbot</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-      background: #f5f5f5;
-      display: flex;
-      flex-direction: column;
-      height: 100%;
-    }
+<!-- Floating Chatbot Button and Panel -->
+<style>
+  .chatbot-button {
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    background-color: #6200ea;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    font-size: 30px;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+    z-index: 1000;
+  }
 
-    .chatbox {
-      display: flex;
-      flex-direction: column;
-      height: 100%;
-      border-radius: 10px;
-      background-color: #ffffff;
-      overflow: hidden;
-    }
+  .chatbot-window {
+    position: fixed;
+    bottom: 100px;
+    right: 25px;
+    width: 320px;
+    max-height: 450px;
+    background: #f9f9f9;
+    border-radius: 15px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    display: none;
+    flex-direction: column;
+    overflow: hidden;
+    z-index: 1000;
+  }
 
-    .chat-header {
-      background-color: #4caf50;
-      color: white;
-      padding: 10px;
-      text-align: center;
-    }
+  .chatbot-header {
+    background: #6200ea;
+    color: white;
+    padding: 12px;
+    text-align: center;
+    font-weight: bold;
+  }
 
-    .chat-messages {
-      flex-grow: 1;
-      padding: 10px;
-      overflow-y: auto;
-      border-top: 1px solid #ccc;
-      border-bottom: 1px solid #ccc;
-    }
+  .chatbot-body {
+    padding: 10px;
+    overflow-y: auto;
+    flex-grow: 1;
+    font-size: 14px;
+  }
 
-    .chat-input {
-      display: flex;
-      border-top: 1px solid #ccc;
-    }
+  .chatbot-input {
+    display: flex;
+    border-top: 1px solid #ccc;
+  }
 
-    .chat-input input {
-      flex-grow: 1;
-      padding: 10px;
-      border: none;
-      outline: none;
-    }
+  .chatbot-input input {
+    flex-grow: 1;
+    padding: 8px;
+    border: none;
+    border-radius: 0;
+    font-size: 14px;
+  }
 
-    .chat-input button {
-      padding: 10px;
-      background-color: #4caf50;
-      color: white;
-      border: none;
-      cursor: pointer;
-    }
+  .chatbot-input button {
+    padding: 8px 10px;
+    background: #6200ea;
+    color: white;
+    border: none;
+    cursor: pointer;
+  }
+</style>
 
-    .bot {
-      color: #333;
-      background: #e0f7fa;
-      padding: 6px 10px;
-      border-radius: 5px;
-      margin: 5px 0;
-      align-self: flex-start;
-    }
+<!-- Chatbot UI -->
+<button class="chatbot-button" onclick="toggleChatbot()">💬</button>
 
-    .user {
-      color: white;
-      background: #4caf50;
-      padding: 6px 10px;
-      border-radius: 5px;
-      margin: 5px 0;
-      align-self: flex-end;
-    }
-  </style>
-</head>
-<body>
-  <div class="chatbox">
-    <div class="chat-header">UdaanAI Chatbot</div>
-    <div class="chat-messages" id="chatMessages"></div>
-    <div class="chat-input">
-      <input type="text" id="userInput" placeholder="Type your class or question...">
-      <button onclick="sendMessage()">Send</button>
-    </div>
+<div class="chatbot-window" id="chatbot">
+  <div class="chatbot-header">UdaanAI Bot</div>
+  <div class="chatbot-body" id="chatOutput">
+    <div>Hello! 👋<br>Ask about exams, scholarships, or courses for any class (e.g., “What are scholarships after 10th?”)</div>
   </div>
+  <div class="chatbot-input">
+    <input type="text" id="chatInput" placeholder="Type your question..." />
+    <button onclick="processChat()">Send</button>
+  </div>
+</div>
 
-  <script>
-    const chatMessages = document.getElementById('chatMessages');
-
-    function sendMessage() {
-      const userInput = document.getElementById('userInput');
-      const message = userInput.value.trim();
-      if (!message) return;
-
-      appendMessage(message, 'user');
-      userInput.value = '';
-      setTimeout(() => replyBot(message.toLowerCase()), 500);
+<!-- Chatbot Script -->
+<script>
+  const responses = {
+    "5th": {
+      exams: ["Navodaya Entrance", "Sainik School Entrance"],
+      scholarships: ["NMMS (if eligible from 8th)", "Pre-matric"],
+      schemes: ["Midday Meal", "Free Uniforms", "Books"],
+      courses: ["Abacus", "Mental Math", "Science Projects"]
+    },
+    "10th": {
+      exams: ["NTSE", "Polytechnic Entrance", "RMS", "RIE CEE"],
+      scholarships: ["OMPLAI", "NSP Pre-Matric", "State Merit"],
+      schemes: ["Free Intermediate", "Skill India"],
+      courses: ["NTSE Prep", "Foundation for JEE/NEET", "Polytechnic Coaching"]
+    },
+    "b.tech": {
+      exams: ["GATE", "SSC JE", "RRB JE", "ISRO", "TSGENCO"],
+      scholarships: ["AICTE Pragati", "NSP Post-Matric", "State Merit"],
+      schemes: ["Internship Portal", "Startup India", "NPTEL"],
+      courses: ["GATE Coaching", "Core Projects", "NPTEL", "Internships"]
+    },
+    "phd": {
+      exams: ["UGC NET", "CSIR NET", "IIT PhD Entrance"],
+      scholarships: ["JRF", "MANF", "INSPIRE"],
+      schemes: ["Research Grants", "Postdoc Fellowships"],
+      courses: ["Research Methodology", "Grant Writing"]
     }
+  };
 
-    function appendMessage(text, sender) {
-      const msg = document.createElement('div');
-      msg.className = sender;
-      msg.innerText = text;
-      chatMessages.appendChild(msg);
-      chatMessages.scrollTop = chatMessages.scrollHeight;
-    }
+  function toggleChatbot() {
+    const bot = document.getElementById("chatbot");
+    bot.style.display = (bot.style.display === "flex") ? "none" : "flex";
+  }
 
-    function replyBot(message) {
-      let reply = "";
-      if (message.includes("5th")) {
-        reply = "Exams: Navodaya, Sainik School\nScholarships: Pre-Matric\nSchemes: Balika Samriddhi Yojana";
-      } else if (message.includes("10th")) {
-        reply = "Exams: NTSE, OMPLAI\nScholarships: NMMS, Vidyadhan\nSchemes: Inspire Award, KYP";
-      } else if (message.includes("12th")) {
-        reply = "Exams: JEE, NEET, CLAT\nScholarships: INSPIRE, Pragati, Vidya Lakshmi\nSchemes: PMSSS, PM-YASASVI";
-      } else if (message.includes("btech")) {
-        reply = "Exams: GATE, IES, DRDO\nScholarships: AICTE Pragati, Saksham\nSchemes: DST Inspire, PMRF";
-      } else if (message.includes("phd")) {
-        reply = "Exams: UGC NET, CSIR\nScholarships: PMRF, DST Inspire\nSchemes: Research Fellowship";
-      } else if (message.includes("document")) {
-        reply = "Common documents: Aadhar, Marksheets, Bank Passbook, Income & Caste Certificate, Photo";
-      } else if (message.includes("apply")) {
-        reply = "To apply, visit the official site mentioned in each section (e.g., NTSE website).";
-      } else {
-        reply = "Please enter your class (e.g., 10th, BTech) or ask about 'documents', 'apply', etc.";
+  function processChat() {
+    const input = document.getElementById("chatInput").value.toLowerCase();
+    const output = document.getElementById("chatOutput");
+
+    const classKeys = Object.keys(responses);
+    let responseMsg = "Sorry, I didn’t understand. Try asking: ‘Scholarships for 10th’";
+
+    for (let cls of classKeys) {
+      if (input.includes(cls)) {
+        const r = responses[cls];
+        if (input.includes("exam")) responseMsg = "📚 Exams: " + r.exams.join(", ");
+        else if (input.includes("scholar")) responseMsg = "💰 Scholarships: " + r.scholarships.join(", ");
+        else if (input.includes("scheme")) responseMsg = "🏛️ Schemes: " + r.schemes.join(", ");
+        else if (input.includes("course")) responseMsg = "📖 Courses: " + r.courses.join(", ");
+        else responseMsg = "Try asking about exams, scholarships, schemes, or courses.";
+        break;
       }
-
-      appendMessage(reply, 'bot');
-      window.parent.postMessage({ classLevel: message }, '*');
     }
-  </script>
-</body>
-</html>
+
+    output.innerHTML += `<div><strong>You:</strong> ${input}</div><div><strong>Bot:</strong> ${responseMsg}</div>`;
+    document.getElementById("chatInput").value = "";
+    output.scrollTop = output.scrollHeight;
+  }
+</script>
