@@ -1,0 +1,30 @@
+<svg class="butterfly-logo" viewBox="0 0 200 160" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Elegant Butterfly Logo">
+  <defs>
+    <linearGradient id="gradUpper" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FF8C00"/>
+      <stop offset="100%" stop-color="#FF69B4"/>
+    </linearGradient>
+    <linearGradient id="gradLower" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#7FFFD4"/>
+      <stop offset="100%" stop-color="#6A5ACD"/>
+    </linearGradient>
+  </defs>
+
+  <path class="wing-upper" d="M100 80 C45 20, 15 40, 60 80" fill="url(#gradUpper)">
+    <animate attributeName="d" values="M100 80 C45 20, 15 40, 60 80; M100 80 C40 15, 10 35, 55 75; M100 80 C45 20, 15 40, 60 80" dur="3s" repeatCount="indefinite" />
+  </path>
+  <path class="wing-lower" d="M100 80 C40 150, 10 110, 60 90" fill="url(#gradLower)">
+    <animate attributeName="d" values="M100 80 C40 150, 10 110, 60 90; M100 80 C35 155, 5 115, 55 95; M100 80 C40 150, 10 110, 60 90" dur="3s" repeatCount="indefinite" />
+  </path>
+  <path class="wing-upper" d="M100 80 C155 20, 185 40, 140 80" fill="url(#gradUpper)">
+    <animate attributeName="d" values="M100 80 C155 20, 185 40, 140 80; M100 80 C160 15, 190 35, 145 75; M100 80 C155 20, 185 40, 140 80" dur="3s" repeatCount="indefinite" />
+  </path>
+  <path class="wing-lower" d="M100 80 C160 150, 190 110, 140 90" fill="url(#gradLower)">
+    <animate attributeName="d" values="M100 80 C160 150, 190 110, 140 90; M100 80 C165 155, 195 115, 145 95; M100 80 C160 150, 190 110, 140 90" dur="3s" repeatCount="indefinite" />
+  </path>
+
+  <ellipse class="body" cx="100" cy="95" rx="6" ry="40" fill="#333"/>
+  <circle class="body" cx="100" cy="50" r="5" fill="#333"/>
+  <path class="antennae" d="M100 50 C90 30, 80 20, 75 10" stroke="#333" fill="transparent" />
+  <path class="antennae" d="M100 50 C110 30, 120 20, 125 10" stroke="#333" fill="transparent" />
+</svg>
