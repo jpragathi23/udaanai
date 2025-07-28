@@ -1,61 +1,25 @@
-/* ========================== UdaanAI - style.css ========================== */
+/* =================== UdaanAI - style.css (Improved) =================== */
 
-/* Reset and Base Styles */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 body {
-  background: linear-gradient(120deg, #e0f7fa, #fce4ec);
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(135deg, #fce4ec, #e1f5fe);
   color: #333;
   padding: 20px;
   overflow-x: hidden;
-  transition: background 0.4s ease;
-  position: relative;
   min-height: 100vh;
 }
 
-/* Butterfly Animation */
-.butterfly {
-  position: fixed;
-  top: 10%;
-  left: 0;
-  width: 60px;
-  height: 60px;
-  background-image: url('https://jpragathi23.github.io/udaanai/butterfly.gif');
-  background-size: contain;
-  background-repeat: no-repeat;
-  animation: fly 15s linear infinite;
-  z-index: 0;
-  pointer-events: none;
-}
-
-@keyframes fly {
-  0% {
-    transform: translate(0, 0) rotate(0deg);
-    opacity: 0.8;
-  }
-  50% {
-    transform: translate(90vw, 30vh) rotate(180deg);
-    opacity: 1;
-  }
-  100% {
-    transform: translate(0vw, 70vh) rotate(360deg);
-    opacity: 0.6;
-  }
-}
-
-/* Header */
-header {
-  text-align: center;
-  margin-bottom: 30px;
-}
-
+/* Butterfly Logo */
 .logo {
-  width: 90px;
+  display: block;
+  margin: 0 auto 30px;
+  width: 100px;
   animation: float 3s ease-in-out infinite;
 }
 
@@ -64,115 +28,56 @@ header {
   50% { transform: translateY(-10px); }
 }
 
-/* Sections */
-.section {
-  margin: 30px 0;
-  padding: 25px;
-  background: white;
-  border-radius: 15px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+h1, h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #444;
+}
+
+.button-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+  padding: 30px 10px;
+  justify-content: center;
 }
 
 /* Buttons */
-.btn {
-  display: inline-block;
-  margin: 10px;
-  padding: 12px 20px;
-  background-color: #6200ea;
+.exam-button {
+  padding: 15px 20px;
+  background-color: #ff80ab;
+  border: none;
   color: white;
+  font-size: 17px;
   border-radius: 12px;
-  text-decoration: none;
-  font-size: 16px;
+  cursor: pointer;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
   transition: 0.3s ease;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
 }
 
-.btn:hover {
-  background-color: #3700b3;
-  transform: scale(1.05);
+.exam-button:hover {
+  background-color: #f06292;
+  transform: translateY(-2px);
 }
 
-/* Responsive Grid */
-.grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-  gap: 15px;
-  margin-top: 20px;
+/* Headings */
+h2 {
+  margin-top: 40px;
+  font-size: 22px;
+  border-bottom: 2px dashed #ccc;
+  padding-bottom: 10px;
+  margin-bottom: 10px;
 }
 
-/* Footer */
-footer {
-  text-align: center;
-  margin-top: 60px;
-  padding: 20px;
-  background: #6200ea;
+/* Links inside buttons (if used as <a>) */
+.exam-button a {
   color: white;
-  border-radius: 12px;
+  text-decoration: none;
 }
 
-/* Floating Chatbot Button */
-.chatbot-button {
-  position: fixed;
-  bottom: 25px;
-  right: 25px;
-  background-color: #6200ea;
-  color: white;
-  border: none;
-  border-radius: 50%;
-  width: 60px;
-  height: 60px;
-  font-size: 30px;
-  cursor: pointer;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.3);
-  z-index: 1000;
-}
-
-.chatbot-window {
-  position: fixed;
-  bottom: 100px;
-  right: 25px;
-  width: 320px;
-  max-height: 450px;
-  background: #f9f9f9;
-  border-radius: 15px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-  display: none;
-  flex-direction: column;
-  overflow: hidden;
-  z-index: 1000;
-}
-
-.chatbot-header {
-  background: #6200ea;
-  color: white;
-  padding: 12px;
-  text-align: center;
-  font-weight: bold;
-}
-
-.chatbot-body {
-  padding: 10px;
-  overflow-y: auto;
-  flex-grow: 1;
-  font-size: 14px;
-}
-
-.chatbot-input {
-  display: flex;
-  border-top: 1px solid #ccc;
-}
-
-.chatbot-input input {
-  flex-grow: 1;
-  padding: 8px;
-  border: none;
-  font-size: 14px;
-}
-
-.chatbot-input button {
-  padding: 8px 10px;
-  background: #6200ea;
-  color: white;
-  border: none;
-  cursor: pointer;
+/* Responsive padding */
+@media (max-width: 600px) {
+  body {
+    padding: 10px;
+  }
 }
