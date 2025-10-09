@@ -1,142 +1,202 @@
-<!-- Floating Chatbot Button and Panel -->
 <style>
-  .chatbot-button {
-    position: fixed;
-    bottom: 25px;
-    right: 25px;
-    background-color: #6200ea;
-    color: white;
-    border: none;
-    border-radius: 50%;
-    width: 60px;
-    height: 60px;
-    font-size: 30px;
-    cursor: pointer;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
-    z-index: 1000;
-  }
+    /* Styling for the floating button */
+    #chatbot-toggle {
+        position: fixed;
+        bottom: 25px;
+        right: 25px;
+        background-color: #ff6f61; /* Updated button color */
+        border: none;
+        color: white;
+        padding: 15px;
+        border-radius: 50%;
+        cursor: pointer;
+        font-size: 20px;
+        z-index: 9999;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        transition: transform 0.3s;
+    }
 
-  .chatbot-window {
-    position: fixed;
-    bottom: 100px;
-    right: 25px;
-    width: 320px;
-    max-height: 450px;
-    background: #f9f9f9;
-    border-radius: 15px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-    display: none;
-    flex-direction: column;
-    overflow: hidden;
-    z-index: 1000;
-  }
+    #chatbot-toggle:hover {
+        transform: scale(1.1);
+        background-color: #e64a19;
+    }
 
-  .chatbot-header {
-    background: #6200ea;
-    color: white;
-    padding: 12px;
-    text-align: center;
-    font-weight: bold;
-  }
+    /* Styling for the main chat window */
+    #chatbot-box {
+        position: fixed;
+        bottom: 90px;
+        right: 25px;
+        width: 300px;
+        max-height: 400px;
+        background-color: #fff;
+        border-radius: 15px;
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+        display: none; /* Initially hidden */
+        flex-direction: column;
+        z-index: 9998;
+        overflow: hidden;
+        animation: slideUp 0.3s ease-out;
+    }
 
-  .chatbot-body {
-    padding: 10px;
-    overflow-y: auto;
-    flex-grow: 1;
-    font-size: 14px;
-  }
+    @keyframes slideUp {
+        from {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
 
-  .chatbot-input {
-    display: flex;
-    border-top: 1px solid #ccc;
-  }
+    #chatbot-header {
+        background-color: #ff6f61;
+        color: white;
+        padding: 10px;
+        text-align: center;
+        font-weight: bold;
+    }
 
-  .chatbot-input input {
-    flex-grow: 1;
-    padding: 8px;
-    border: none;
-    border-radius: 0;
-    font-size: 14px;
-  }
+    /* Styling for the message area */
+    #chatbot-messages {
+        padding: 10px;
+        flex: 1;
+        overflow-y: auto;
+        font-size: 14px;
+        background-color: #f9f9f9;
+    }
 
-  .chatbot-input button {
-    padding: 8px 10px;
-    background: #6200ea;
-    color: white;
-    border: none;
-    cursor: pointer;
-  }
+    .message {
+        margin-bottom: 8px;
+    }
+
+    .user-message {
+        text-align: right;
+        color: #333;
+    }
+
+    .bot-message {
+        text-align: left;
+        color: #444;
+        background-color: #e3f2fd;
+        padding: 6px 10px;
+        border-radius: 10px;
+        display: inline-block;
+        max-width: 85%; /* Prevent super-long lines */
+    }
+
+    /* Styling for the input area */
+    #chatbot-input-box {
+        display: flex;
+        padding: 10px;
+        border-top: 1px solid #ccc;
+        background-color: white;
+    }
+
+    #chatbot-input {
+        flex: 1;
+        padding: 8px;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        font-size: 14px;
+    }
+
+    #chatbot-send {
+        background-color: #0288d1;
+        color: white;
+        border: none;
+        margin-left: 8px;
+        padding: 8px 12px;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+
+    #chatbot-send:hover {
+        background-color: #01579b;
+    }
 </style>
 
-<!-- Chatbot UI -->
-<button class="chatbot-button" onclick="toggleChatbot()">💬</button>
+<button id="chatbot-toggle" onclick="toggleChatbot()">💬</button>
 
-<div class="chatbot-window" id="chatbot">
-  <div class="chatbot-header">UdaanAI Bot</div>
-  <div class="chatbot-body" id="chatOutput">
-    <div>Hello! 👋<br>Ask about exams, scholarships, or courses for any class (e.g., “What are scholarships after 10th?”)</div>
-  </div>
-  <div class="chatbot-input">
-    <input type="text" id="chatInput" placeholder="Type your question..." />
-    <button onclick="processChat()">Send</button>
-  </div>
+<div id="chatbot-box">
+    <div id="chatbot-header">UdaanAI Bot</div>
+    <div id="chatbot-messages">
+        <div class="bot-message">Hello! 👋<br>Ask about exams, scholarships, or courses for a specific class (e.g., “Scholarships for 10th”)</div>
+    </div>
+    <div id="chatbot-input-box">
+        <input type="text" id="chatbot-input" placeholder="Type your question..." onkeyup="if(event.key === 'Enter') processChat()">
+        <button id="chatbot-send" onclick="processChat()">Send</button>
+    </div>
 </div>
 
-<!-- Chatbot Script -->
 <script>
-  const responses = {
-    "5th": {
-      exams: ["Navodaya Entrance", "Sainik School Entrance"],
-      scholarships: ["NMMS (if eligible from 8th)", "Pre-matric"],
-      schemes: ["Midday Meal", "Free Uniforms", "Books"],
-      courses: ["Abacus", "Mental Math", "Science Projects"]
-    },
-    "10th": {
-      exams: ["NTSE", "Polytechnic Entrance", "RMS", "RIE CEE"],
-      scholarships: ["OMPLAI", "NSP Pre-Matric", "State Merit"],
-      schemes: ["Free Intermediate", "Skill India"],
-      courses: ["NTSE Prep", "Foundation for JEE/NEET", "Polytechnic Coaching"]
-    },
-    "b.tech": {
-      exams: ["GATE", "SSC JE", "RRB JE", "ISRO", "TSGENCO"],
-      scholarships: ["AICTE Pragati", "NSP Post-Matric", "State Merit"],
-      schemes: ["Internship Portal", "Startup India", "NPTEL"],
-      courses: ["GATE Coaching", "Core Projects", "NPTEL", "Internships"]
-    },
-    "phd": {
-      exams: ["UGC NET", "CSIR NET", "IIT PhD Entrance"],
-      scholarships: ["JRF", "MANF", "INSPIRE"],
-      schemes: ["Research Grants", "Postdoc Fellowships"],
-      courses: ["Research Methodology", "Grant Writing"]
-    }
-  };
+    const responses = {
+        "5th": {
+            exams: ["Navodaya Entrance", "Sainik School Entrance"],
+            scholarships: ["NMMS (if eligible from 8th)", "Pre-matric"],
+            schemes: ["Midday Meal", "Free Uniforms", "Books"],
+            courses: ["Abacus", "Mental Math", "Science Projects"]
+        },
+        "10th": {
+            exams: ["NTSE", "Polytechnic Entrance", "RMS", "RIE CEE"],
+            scholarships: ["OMPLAI", "NSP Pre-Matric", "State Merit"],
+            schemes: ["Free Intermediate", "Skill India"],
+            courses: ["NTSE Prep", "Foundation for JEE/NEET", "Polytechnic Coaching"]
+        },
+        "b.tech": {
+            exams: ["GATE", "SSC JE", "RRB JE", "ISRO", "TSGENCO"],
+            scholarships: ["AICTE Pragati", "NSP Post-Matric", "State Merit"],
+            schemes: ["Internship Portal", "Startup India", "NPTEL"],
+            courses: ["GATE Coaching", "Core Projects", "NPTEL", "Internships"]
+        },
+        "phd": {
+            exams: ["UGC NET", "CSIR NET", "IIT PhD Entrance"],
+            scholarships: ["JRF", "MANF", "INSPIRE"],
+            schemes: ["Research Grants", "Postdoc Fellowships"],
+            courses: ["Research Methodology", "Grant Writing"]
+        }
+    };
 
-  function toggleChatbot() {
-    const bot = document.getElementById("chatbot");
-    bot.style.display = (bot.style.display === "flex") ? "none" : "flex";
-  }
-
-  function processChat() {
-    const input = document.getElementById("chatInput").value.toLowerCase();
-    const output = document.getElementById("chatOutput");
-
-    const classKeys = Object.keys(responses);
-    let responseMsg = "Sorry, I didn’t understand. Try asking: ‘Scholarships for 10th’";
-
-    for (let cls of classKeys) {
-      if (input.includes(cls)) {
-        const r = responses[cls];
-        if (input.includes("exam")) responseMsg = "📚 Exams: " + r.exams.join(", ");
-        else if (input.includes("scholar")) responseMsg = "💰 Scholarships: " + r.scholarships.join(", ");
-        else if (input.includes("scheme")) responseMsg = "🏛️ Schemes: " + r.schemes.join(", ");
-        else if (input.includes("course")) responseMsg = "📖 Courses: " + r.courses.join(", ");
-        else responseMsg = "Try asking about exams, scholarships, schemes, or courses.";
-        break;
-      }
+    function toggleChatbot() {
+        // Updated to use the correct ID: #chatbot-box
+        const bot = document.getElementById("chatbot-box"); 
+        bot.style.display = (bot.style.display === "flex") ? "none" : "flex";
     }
 
-    output.innerHTML += `<div><strong>You:</strong> ${input}</div><div><strong>Bot:</strong> ${responseMsg}</div>`;
-    document.getElementById("chatInput").value = "";
-    output.scrollTop = output.scrollHeight;
-  }
+    function processChat() {
+        // Updated to use the correct ID: #chatbot-input
+        const inputElement = document.getElementById("chatbot-input");
+        const input = inputElement.value.toLowerCase().trim();
+
+        // Check if input is empty
+        if (!input) return; 
+
+        // Updated to use the correct ID: #chatbot-messages
+        const output = document.getElementById("chatbot-messages");
+
+        const classKeys = Object.keys(responses);
+        let responseMsg = "Sorry, I didn’t understand. Try asking: ‘Scholarships for 10th’ or ‘Exams for B.Tech’";
+
+        // --- Logic to find the response ---
+        for (let cls of classKeys) {
+            if (input.includes(cls)) {
+                const r = responses[cls];
+                if (input.includes("exam")) responseMsg = "📚 **Exams:** " + r.exams.join(", ");
+                else if (input.includes("scholar")) responseMsg = "💰 **Scholarships:** " + r.scholarships.join(", ");
+                else if (input.includes("scheme")) responseMsg = "🏛️ **Schemes:** " + r.schemes.join(", ");
+                else if (input.includes("course")) responseMsg = "📖 **Courses:** " + r.courses.join(", ");
+                else responseMsg = "I found details for **" + cls.toUpperCase() + "**! Try asking specifically about exams, scholarships, schemes, or courses.";
+                break;
+            }
+        }
+        // ---------------------------------
+
+        // Append messages with the correct class for styling
+        output.innerHTML += `<div class="user-message message"><strong>You:</strong> ${input}</div><div class="bot-message message">${responseMsg}</div>`;
+
+        // Clear input and scroll to bottom
+        inputElement.value = "";
+        output.scrollTop = output.scrollHeight;
+    }
 </script>
