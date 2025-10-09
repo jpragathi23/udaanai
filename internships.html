@@ -1,91 +1,89 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Internships - UdaanAI</title>
-  <style>
-    body {
-      font-family: 'Segoe UI', sans-serif;
-      background: linear-gradient(135deg, #e1f5fe, #fff3e0);
-      margin: 0;
-      padding: 20px;
-    }
-    .logo {
-      display: block;
-      margin: 0 auto 20px;
-      width: 100px;
-      animation: float 3s ease-in-out infinite;
-    }
-    @keyframes float {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-10px); }
-    }
-    h1 {
-      text-align: center;
-      color: #333;
-    }
-    h2 {
-      margin-top: 30px;
-      color: #444;
-    }
-    .button-container {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 15px;
-      padding: 20px;
-    }
-    .exam-button {
-      padding: 15px;
-      border: none;
-      border-radius: 10px;
-      background-color: #039be5;
-      color: white;
-      font-size: 16px;
-      cursor: pointer;
-      transition: 0.3s;
-    }
-    .exam-button:hover {
-      background-color: #0277bd;
-    }
-  </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Internships - UdaanAI</title>
+  <style>
+    /* All your existing CSS for body, logo, h1, h2, button-container, and exam-button styles remain here */
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, #e1f5fe, #fff3e0);
+      margin: 0;
+      padding: 20px;
+    }
+    .logo {
+      display: block;
+      margin: 0 auto 20px;
+      width: 100px;
+      animation: float 3s ease-in-out infinite;
+    }
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+    h1 {
+      text-align: center;
+      color: #333;
+    }
+    h2 {
+      margin-top: 30px;
+      color: #444;
+    }
+    .button-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 15px;
+      padding: 20px;
+    }
+    .exam-button {
+      padding: 15px;
+      border: none;
+      border-radius: 10px;
+      background-color: #039be5;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    .exam-button:hover {
+      background-color: #0277bd;
+    }
+  </style>
+    
+    <script src="script.js" defer></script>
 </head>
 <body>
-  <img src="assets/butterfly.gif" alt="Butterfly Logo" class="logo" />
-  <h1>Internships</h1>
+  <img src="assets/butterfly.gif" alt="Butterfly Logo" class="logo" />
+  <h1>Internships</h1>
 
-  <h2>Government Internships</h2>
-  <div class="button-container">
-    <button class="exam-button" onclick="openLink('https://www.mygov.in/task/')">MyGov Internships</button>
-    <button class="exam-button" onclick="openLink('https://internship.aicte-india.org/')">AICTE Internship Portal</button>
-    <button class="exam-button" onclick="openLink('https://www.drdo.gov.in/')">DRDO Internships</button>
-    <button class="exam-button" onclick="openLink('https://www.isro.gov.in/')">ISRO Internships</button>
-    <button class="exam-button" onclick="openLink('https://www.iisc.ac.in/internship-programmes/')">IISc Internships</button>
-    <button class="exam-button" onclick="openLink('https://www.niti.gov.in/internship')">NITI Aayog Internship</button>
-    <button class="exam-button" onclick="openLink('https://www.sebi.gov.in/')">SEBI Internships</button>
-    <button class="exam-button" onclick="openLink('https://www.rbi.org.in/')">RBI Internships</button>
-    <button class="exam-button" onclick="openLink('https://www.meity.gov.in/content/internship-scheme')">MeitY Internship</button>
-    <button class="exam-button" onclick="openLink('https://dst.gov.in/internship-programme')">DST Internships</button>
-  </div>
+  <h2>Government Internships</h2>
+  <div class="button-container">
+    <button class="exam-button" onclick="openLink('https://www.mygov.in/task/')">MyGov Internships</button>
+    <button class="exam-button" onclick="openLink('https://internship.aicte-india.org/')">AICTE Internship Portal</button>
+    <button class="exam-button" onclick="openLink('https://www.drdo.gov.in/')">DRDO Internships</button>
+    <button class="exam-button" onclick="openLink('https://www.isro.gov.in/')">ISRO Internships</button>
+    <button class="exam-button" onclick="openLink('https://www.iisc.ac.in/internship-programmes/')">IISc Internships</button>
+    <button class="exam-button" onclick="openLink('https://www.niti.gov.in/internship')">NITI Aayog Internship</button>
+    <button class="exam-button" onclick="openLink('https://www.sebi.gov.in/')">SEBI Internships</button>
+    <button class="exam-button" onclick="openLink('https://www.rbi.org.in/')">RBI Internships</button>
+    <button class="exam-button" onclick="openLink('https://www.meity.gov.in/content/internship-scheme')">MeitY Internship</button>
+    <button class="exam-button" onclick="openLink('https://dst.gov.in/internship-programme')">DST Internships</button>
+  </div>
 
-  <h2>Private Internships</h2>
-  <div class="button-container">
-    <button class="exam-button" onclick="openLink('https://internshala.com/')">Internshala</button>
-    <button class="exam-button" onclick="openLink('https://www.letsintern.com/')">LetsIntern</button>
-    <button class="exam-button" onclick="openLink('https://angel.co/jobs')">AngelList</button>
-    <button class="exam-button" onclick="openLink('https://www.linkedin.com/jobs/internship-jobs/')">LinkedIn Internships</button>
-    <button class="exam-button" onclick="openLink('https://careers.google.com/students/')">Google Internship</button>
-    <button class="exam-button" onclick="openLink('https://careers.microsoft.com/students/us/en')">Microsoft Internship</button>
-    <button class="exam-button" onclick="openLink('https://www.ibm.com/in-en/employment/')">IBM Internship</button>
-    <button class="exam-button" onclick="openLink('https://careers.zohocorp.com/')">Zoho Internship</button>
-    <button class="exam-button" onclick="openLink('https://www.infosys.com/careers/')">Infosys Internship</button>
-    <button class="exam-button" onclick="openLink('https://careers.tcs.com/')">TCS Internship</button>
-  </div>
-
-  <script>
-    function openLink(url) {
-      window.open(url, '_blank');
-    }
-  </script>
-</body>
+  <h2>Private Internships</h2>
+  <div class="button-container">
+    <button class="exam-button" onclick="openLink('https://internshala.com/')">Internshala</button>
+    <button class="exam-button" onclick="openLink('https://www.letsintern.com/')">LetsIntern</button>
+    <button class="exam-button" onclick="openLink('https://angel.co/jobs')">AngelList</button>
+    <button class="exam-button" onclick="openLink('https://www.linkedin.com/jobs/internship-jobs/')">LinkedIn Internships</button>
+    <button class="exam-button" onclick="openLink('https://careers.google.com/students/')">Google Internship</button>
+    <button class="exam-button" onclick="openLink('https://careers.microsoft.com/students/us/en')">Microsoft Internship</button>
+    <button class="exam-button" onclick="openLink('https://www.ibm.com/in-en/employment/')">IBM Internship</button>
+    <button class="exam-button" onclick="openLink('https://careers.zohocorp.com/')">Zoho Internship</button>
+    <button class="exam-button" onclick="openLink('https://www.infosys.com/careers/')">Infosys Internship</button>
+    <button class="exam-button" onclick="openLink('https://careers.tcs.com/')">TCS Internship</button>
+  </div>
+    
+    </body>
 </html>
