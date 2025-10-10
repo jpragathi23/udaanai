@@ -1,78 +1,230 @@
 /* Reset & Base Styles */
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
+/* 💻 DESKTOP FILL FIX: Ensure the body takes full width and minimum height */
 body {
-  background: linear-gradient(135deg, #e0f7fa, #fce4ec);
-  color: #333;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 20px;
+  background: linear-gradient(135deg, #e0f7fa, #fce4ec);
+  color: #333;
+  min-height: 100vh;
+  width: 100vw; /* ✅ FIX: Ensures body fills desktop horizontally */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px 0; /* Reduced side padding, using max-width on containers */
 }
 
 /* Header */
 header {
-  text-align: center;
-  margin-bottom: 30px;
+  text-align: center;
+  margin-bottom: 30px;
+  width: 100%;
+  max-width: 900px;
+  padding: 0 20px; /* Added horizontal padding to keep content off the edge */
 }
 
 .logo-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .butterfly-logo {
-  width: 120px;
-  height: auto;
-  margin-bottom: 10px;
+  width: 120px;
+  height: auto;
+  margin-bottom: 10px;
 }
 
 /* Title under logo */
 .logo-container h1 {
-  font-size: 2rem;
-  color: #00796B;
-  text-shadow: 1px 1px 2px #aaa;
+  font-size: 2rem;
+  color: #00796B;
+  text-shadow: 1px 1px 2px #aaa;
 }
 
 /* Grid Buttons */
 .button-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-  gap: 20px;
-  width: 100%;
-  max-width: 900px;
-  padding: 10px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 20px;
+  width: 95%; /* ✅ IMPROVED: Use 95% to allow small margins */
+  max-width: 900px; /* Maintains desktop centered design */
+  padding: 10px 20px; /* Added horizontal padding */
 }
 
 .button-grid a {
-  text-decoration: none;
-  padding: 15px;
-  text-align: center;
-  background: linear-gradient(to right, #7b1fa2, #ba68c8);
-  color: white;
-  border-radius: 12px;
-  font-weight: bold;
-  box-shadow: 0 4px 6px rgba(0,0,0,0.2);
-  transition: transform 0.3s ease, background 0.4s ease;
+  text-decoration: none;
+  padding: 15px;
+  text-align: center;
+  background: linear-gradient(to right, #7b1fa2, #ba68c8);
+  color: white;
+  border-radius: 12px;
+  font-weight: bold;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+  transition: transform 0.3s ease, background 0.4s ease;
 }
 
 .button-grid a:hover {
-  transform: translateY(-5px);
-  background: linear-gradient(to right, #4a148c, #9c27b0);
+  transform: translateY(-5px);
+  background: linear-gradient(to right, #4a148c, #9c27b0);
 }
 
 /* Footer */
 footer {
-  margin-top: auto;
-  padding: 20px;
-  text-align: center;
-  font-size: 0.9rem;
-  color: #666;
+  margin-top: auto;
+  padding: 20px;
+  text-align: center;
+  font-size: 0.9rem;
+  color: #666;
+  width: 100%; /* Ensures footer fills the width */
+}
+
+/* ======================= CHATBOT STYLES (MOVED FROM HTML) ======================= */
+
+#chatbot-toggle {
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    background-color: #ff6f61;
+    border: none;
+    color: white;
+    padding: 15px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 20px;
+    z-index: 9999;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s;
+}
+
+#chatbot-toggle:hover {
+    transform: scale(1.1);
+    background-color: #e64a19;
+}
+
+#chatbot-box {
+    position: fixed;
+    bottom: 90px;
+    right: 25px;
+    width: 300px;
+    max-height: 400px;
+    background-color: #fff;
+    border-radius: 15px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+    /* NOTE: display: none is set in JS logic, but flex is used when visible */
+    flex-direction: column;
+    z-index: 9998;
+    overflow: hidden;
+    animation: slideUp 0.3s ease-out;
+}
+
+@keyframes slideUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+#chatbot-header {
+    background-color: #ff6f61;
+    color: white;
+    padding: 10px;
+    text-align: center;
+    font-weight: bold;
+}
+
+#chatbot-messages {
+    padding: 10px;
+    flex: 1;
+    overflow-y: auto;
+    font-size: 14px;
+    background-color: #f9f9f9;
+}
+
+.message { margin-bottom: 8px; }
+.user-message { text-align: right; color: #333; }
+.bot-message {
+    text-align: left;
+    color: #444;
+    background-color: #e3f2fd;
+    padding: 6px 10px;
+    border-radius: 10px;
+    display: inline-block;
+    max-width: 85%;
+}
+
+#chatbot-input-box {
+    display: flex;
+    padding: 10px;
+    border-top: 1px solid #ccc;
+    background-color: white;
+}
+
+#chatbot-input {
+    flex: 1;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 14px;
+}
+
+#chatbot-send {
+    background-color: #0288d1;
+    color: white;
+    border: none;
+    margin-left: 8px;
+    padding: 8px 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#chatbot-send:hover {
+    background-color: #01579b;
+}
+
+/* ======================= SUB-PAGE STYLES (For Exams, DigiLocker, etc.) ======================= */
+/* Assuming the sub-pages use a header wrapper for consistency */
+.butterfly-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.butterfly-img {
+    width: 100px;
+    height: auto;
+    margin-bottom: 10px;
+}
+
+.page-title {
+    font-size: 2rem;
+    color: #00796B;
+}
+
+/* Style for the button-container used in gov-examst.html */
+.button-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+    width: 95%;
+    max-width: 900px;
+    margin: 20px auto;
+    padding: 0 20px;
+}
+
+.button-container button {
+    padding: 15px;
+    border: none;
+    border-radius: 10px;
+    background-color: #039be5;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.button-container button:hover {
+    background-color: #0277bd;
 }
