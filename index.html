@@ -1,67 +1,286 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>UdaanAI - Empowering Your Future</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>UdaanAI - Empowering Your Future</title>
+  <link rel="stylesheet" href="style.css">
+      <style>
+    /* ======================= Chatbot Styles ======================= */
+    #chatbot-toggle {
+        position: fixed;
+        bottom: 25px;
+        right: 25px;
+        background-color: #ff6f61;
+        border: none;
+        color: white;
+        padding: 15px;
+        border-radius: 50%;
+        cursor: pointer;
+        font-size: 20px;
+        z-index: 9999;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        transition: transform 0.3s;
+    }
+
+    #chatbot-toggle:hover {
+        transform: scale(1.1);
+        background-color: #e64a19;
+    }
+
+    #chatbot-box {
+        position: fixed;
+        bottom: 90px;
+        right: 25px;
+        width: 300px;
+        max-height: 400px;
+        background-color: #fff;
+        border-radius: 15px;
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+        display: none; /* Initially hidden */
+        flex-direction: column;
+        z-index: 9998;
+        overflow: hidden;
+        animation: slideUp 0.3s ease-out;
+    }
+
+    @keyframes slideUp {
+        from { opacity: 0; transform: translateY(30px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    #chatbot-header {
+        background-color: #ff6f61;
+        color: white;
+        padding: 10px;
+        text-align: center;
+        font-weight: bold;
+    }
+
+    #chatbot-messages {
+        padding: 10px;
+        flex: 1;
+        overflow-y: auto;
+        font-size: 14px;
+        background-color: #f9f9f9;
+    }
+
+    .message { margin-bottom: 8px; }
+
+    .user-message { text-align: right; color: #333; }
+
+    .bot-message {
+        text-align: left;
+        color: #444;
+        background-color: #e3f2fd;
+        padding: 6px 10px;
+        border-radius: 10px;
+        display: inline-block;
+        max-width: 85%;
+    }
+
+    #chatbot-input-box {
+        display: flex;
+        padding: 10px;
+        border-top: 1px solid #ccc;
+        background-color: white;
+    }
+
+    #chatbot-input {
+        flex: 1;
+        padding: 8px;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        font-size: 14px;
+    }
+
+    #chatbot-send {
+        background-color: #0288d1;
+        color: white;
+        border: none;
+        margin-left: 8px;
+        padding: 8px 12px;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+
+    #chatbot-send:hover {
+        background-color: #01579b;
+    }
+
+    /* ======================= Custom Home Page Styles ======================= */
+    .utility-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 15px;
+      max-width: 800px;
+      margin: 20px auto;
+      padding: 0 20px;
+    }
+    .utility-grid a {
+      text-align: center;
+      padding: 15px;
+      background-color: #e8eaf6;
+      color: #3f51b5;
+      border-radius: 10px;
+      text-decoration: none;
+      font-weight: bold;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      transition: background-color 0.3s;
+    }
+    .utility-grid a:hover {
+      background-color: #c5cae9;
+    }
+    .utility-grid p {
+      margin: 0;
+    }
+  </style>
 </head>
 <body>
 
-  <!-- 🦋 Butterfly Logo -->
-  <header>
-    <div class="logo-container">
-      <!-- Butterfly SVG -->
-      <svg class="butterfly-logo" viewBox="0 0 200 160" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Elegant Butterfly Logo">
-        <defs>
-          <linearGradient id="gradUpper" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stop-color="#FF8C00"/>
-            <stop offset="100%" stop-color="#FF69B4"/>
-          </linearGradient>
-          <linearGradient id="gradLower" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stop-color="#7FFFD4"/>
-            <stop offset="100%" stop-color="#6A5ACD"/>
-          </linearGradient>
-        </defs>
+    <header>
+    <div class="logo-container">
+            <svg class="butterfly-logo" viewBox="0 0 200 160" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Elegant Butterfly Logo" style="width: 50px; height: 50px; display: inline-block;">
+        <defs>
+          <linearGradient id="gradUpper" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#FF8C00"/>
+            <stop offset="100%" stop-color="#FF69B4"/>
+          </linearGradient>
+          <linearGradient id="gradLower" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#7FFFD4"/>
+            <stop offset="100%" stop-color="#6A5ACD"/>
+          </linearGradient>
+        </defs>
+        <path class="wing-upper" d="M100 80 C45 20, 15 40, 60 80" fill="url(#gradUpper)">
+          <animate attributeName="d" values="M100 80 C45 20, 15 40, 60 80; M100 80 C40 15, 10 35, 55 75; M100 80 C45 20, 15 40, 60 80" dur="3s" repeatCount="indefinite" />
+        </path>
+        <path class="wing-lower" d="M100 80 C40 150, 10 110, 60 90" fill="url(#gradLower)">
+          <animate attributeName="d" values="M100 80 C40 150, 10 110, 60 90; M100 80 C35 155, 5 115, 55 95; M100 80 C40 150, 10 110, 60 90" dur="3s" repeatCount="indefinite" />
+        </path>
+        <path class="wing-upper" d="M100 80 C155 20, 185 40, 140 80" fill="url(#gradUpper)">
+          <animate attributeName="d" values="M100 80 C155 20, 185 40, 140 80; M100 80 C160 15, 190 35, 145 75; M100 80 C155 20, 185 40, 140 80" dur="3s" repeatCount="indefinite" />
+        </path>
+        <path class="wing-lower" d="M100 80 C160 150, 190 110, 140 90" fill="url(#gradLower)">
+          <animate attributeName="d" values="M100 80 C160 150, 190 110, 140 90; M100 80 C165 155, 195 115, 145 95; M100 80 C160 150, 190 110, 140 90" dur="3s" repeatCount="indefinite" />
+        </path>
+        <ellipse class="body" cx="100" cy="95" rx="6" ry="40" fill="#333"/>
+        <circle class="body" cx="100" cy="50" r="5" fill="#333"/>
+        <path class="antennae" d="M100 50 C90 30, 80 20, 75 10" stroke="#333" fill="transparent" />
+        <path class="antennae" d="M100 50 C110 30, 120 20, 125 10" stroke="#333" fill="transparent" />
+      </svg>
+      <h1>UdaanAI</h1>
+    </div>
+  </header>
 
-        <path class="wing-upper" d="M100 80 C45 20, 15 40, 60 80" fill="url(#gradUpper)">
-          <animate attributeName="d" values="M100 80 C45 20, 15 40, 60 80; M100 80 C40 15, 10 35, 55 75; M100 80 C45 20, 15 40, 60 80" dur="3s" repeatCount="indefinite" />
-        </path>
-        <path class="wing-lower" d="M100 80 C40 150, 10 110, 60 90" fill="url(#gradLower)">
-          <animate attributeName="d" values="M100 80 C40 150, 10 110, 60 90; M100 80 C35 155, 5 115, 55 95; M100 80 C40 150, 10 110, 60 90" dur="3s" repeatCount="indefinite" />
-        </path>
-        <path class="wing-upper" d="M100 80 C155 20, 185 40, 140 80" fill="url(#gradUpper)">
-          <animate attributeName="d" values="M100 80 C155 20, 185 40, 140 80; M100 80 C160 15, 190 35, 145 75; M100 80 C155 20, 185 40, 140 80" dur="3s" repeatCount="indefinite" />
-        </path>
-        <path class="wing-lower" d="M100 80 C160 150, 190 110, 140 90" fill="url(#gradLower)">
-          <animate attributeName="d" values="M100 80 C160 150, 190 110, 140 90; M100 80 C165 155, 195 115, 145 95; M100 80 C160 150, 190 110, 140 90" dur="3s" repeatCount="indefinite" />
-        </path>
+    <section class="button-grid">
+    <a href="govt-exams.html">Government Jobs</a>
+    <a href="private-exams.html">Private Jobs</a>
+    <a href="govt-scholarships.html">Govt Scholarships</a>
+    <a href="private-scholarships.html">Private Scholarships</a>
+    <a href="govt-internships.html">Govt Internships</a>
+    <a href="private-internships.html">Private Internships</a>
+    <a href="govt-schemes.html">Govt Schemes</a>
+    <a href="private-schemes.html">Private Schemes</a>
+  </section>
 
-        <ellipse class="body" cx="100" cy="95" rx="6" ry="40" fill="#333"/>
-        <circle class="body" cx="100" cy="50" r="5" fill="#333"/>
-        <path class="antennae" d="M100 50 C90 30, 80 20, 75 10" stroke="#333" fill="transparent" />
-        <path class="antennae" d="M100 50 C110 30, 120 20, 125 10" stroke="#333" fill="transparent" />
-      </svg>
-      <h1>UdaanAI</h1>
-    </div>
-  </header>
+    <h2 style="text-align: center; color: #3f51b5; margin-top: 40px;">Essential Tools</h2>
+  <section class="utility-grid">
+    <a href="digilocker.html">
+      <p>🔒 DigiLocker</p>
+    </a>
+    <a href="educationalnews.html">
+      <p>📰 Educational News</p>
+    </a>
+    <a href="courses.html">
+      <p>📖 Courses</p>
+    </a>
+    <a href="exams.html">
+      <p>📝 All Exams</p>
+    </a>
+  </section>
 
-  <!-- 🟩 Button Grid -->
-  <section class="button-grid">
-    <a href="govt-exams.html">Government Jobs</a>
-    <a href="private-exams.html">Private Jobs</a>
-    <a href="govt-scholarships.html">Govt Scholarships</a>
-    <a href="private-scholarships.html">Private Scholarships</a>
-    <a href="govt-internships.html">Govt Internships</a>
-    <a href="private-internships.html">Private Internships</a>
-    <a href="govt-schemes.html">Govt Schemes</a>
-    <a href="private-schemes.html">Private Schemes</a>
-  </section>
+    <footer>
+    <p>&copy; 2025 UdaanAI | Designed by Pragathi</p>
+  </footer>
 
-  <!-- 🔚 Footer -->
-  <footer>
-    <p>&copy; 2025 UdaanAI | Designed by Pragathi</p>
-  </footer>
+    <button id="chatbot-toggle" onclick="toggleChatbot()">💬</button>
+
+  <div id="chatbot-box">
+      <div id="chatbot-header">UdaanAI Bot</div>
+      <div id="chatbot-messages">
+          <div class="bot-message">Hello! 👋<br>Ask about exams, scholarships, or courses for a specific class (e.g., “Scholarships for 10th”)</div>
+      </div>
+      <div id="chatbot-input-box">
+          <input type="text" id="chatbot-input" placeholder="Type your question..." onkeyup="if(event.key === 'Enter') processChat()">
+          <button id="chatbot-send" onclick="processChat()">Send</button>
+      </div>
+  </div>
+
+  <script>
+      const responses = {
+          "5th": {
+              exams: ["Navodaya Entrance", "Sainik School Entrance"],
+              scholarships: ["NMMS (if eligible from 8th)", "Pre-matric"],
+              schemes: ["Midday Meal", "Free Uniforms", "Books"],
+              courses: ["Abacus", "Mental Math", "Science Projects"]
+          },
+          "10th": {
+              exams: ["NTSE", "Polytechnic Entrance", "RMS", "RIE CEE"],
+              scholarships: ["OMPLAI", "NSP Pre-Matric", "State Merit"],
+              schemes: ["Free Intermediate", "Skill India"],
+              courses: ["NTSE Prep", "Foundation for JEE/NEET", "Polytechnic Coaching"]
+          },
+          "b.tech": {
+              exams: ["GATE", "SSC JE", "RRB JE", "ISRO", "TSGENCO"],
+              scholarships: ["AICTE Pragati", "NSP Post-Matric", "State Merit"],
+              schemes: ["Internship Portal", "Startup India", "NPTEL"],
+              courses: ["GATE Coaching", "Core Projects", "NPTEL", "Internships"]
+          },
+          "phd": {
+              exams: ["UGC NET", "CSIR NET", "IIT PhD Entrance"],
+              scholarships: ["JRF", "MANF", "INSPIRE"],
+              schemes: ["Research Grants", "Postdoc Fellowships"],
+              courses: ["Research Methodology", "Grant Writing"]
+          }
+      };
+
+      function toggleChatbot() {
+          const bot = document.getElementById("chatbot-box");
+          bot.style.display = (bot.style.display === "flex") ? "none" : "flex";
+      }
+
+      function processChat() {
+          const inputElement = document.getElementById("chatbot-input");
+          const input = inputElement.value.toLowerCase().trim();
+
+          if (!input) return;
+
+          const output = document.getElementById("chatbot-messages");
+
+          const classKeys = Object.keys(responses);
+          let responseMsg = "Sorry, I didn’t understand. Try asking: ‘Scholarships for 10th’ or ‘Exams for B.Tech’";
+
+          for (let cls of classKeys) {
+              if (input.includes(cls)) {
+                  const r = responses[cls];
+                  if (input.includes("exam")) responseMsg = "📚 **Exams:** " + r.exams.join(", ");
+                  else if (input.includes("scholar")) responseMsg = "💰 **Scholarships:** " + r.scholarships.join(", ");
+                  else if (input.includes("scheme")) responseMsg = "🏛️ **Schemes:** " + r.schemes.join(", ");
+                  else if (input.includes("course")) responseMsg = "📖 **Courses:** " + r.courses.join(", ");
+                  else responseMsg = "I found details for **" + cls.toUpperCase() + "**! Try asking specifically about exams, scholarships, schemes, or courses.";
+                  break;
+              }
+          }
+
+          // Append messages with the correct class for styling
+          output.innerHTML += `<div class="user-message message"><strong>You:</strong> ${input}</div><div class="bot-message message">${responseMsg}</div>`;
+
+          // Clear input and scroll to bottom
+          inputElement.value = "";
+          output.scrollTop = output.scrollHeight;
+      }
+  </script>
 
 </body>
 </html>
